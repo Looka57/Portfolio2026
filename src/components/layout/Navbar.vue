@@ -1,1 +1,5 @@
-b
+<template>
+  <nav>
+    Navbar
+  </nav>
+</template>
