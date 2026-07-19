@@ -6,3 +6,12 @@ const router = createRouter({
 })
 
 export default router
+
+
+  // routes: [
+  //   {
+  //     path: '/',
+  //     name: 'home',
+  //     component: () => import('../views/HomeView.vue'),
+  //   },
+  // ],
