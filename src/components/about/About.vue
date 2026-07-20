@@ -1,5 +1,5 @@
 <template>
   <nav>
-    Navbar
+    About
   </nav>
 </template>

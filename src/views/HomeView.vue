@@ -12,13 +12,13 @@ import Footer from '../components/layout/Footer.vue'
 
 <template>
 
-  <Navbar />
+    <!-- <Navbar /> -->
 
-  <main>
+    <main>
 
-    <Hero />
+        <Hero />
 
-    <Testimonials />
+    <!-- <Testimonials />
 
     <Projects />
 
@@ -26,10 +26,12 @@ import Footer from '../components/layout/Footer.vue'
 
     <About />
 
-    <Contact />
+    <Contact /> -->
 
-  </main>
+    </main>
 
-  <Footer />
+    <Footer />
 
 </template>
+
+<style scoped></style>
