@@ -12,7 +12,7 @@ import Footer from '../components/layout/Footer.vue'
 
 <template>
 
-    <!-- <Navbar /> -->
+    <Navbar />
 
     <main>
 
