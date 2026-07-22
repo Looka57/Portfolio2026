@@ -98,7 +98,7 @@ onMounted(() => {
           </a>
         </div>
       </div>
-      //TODO: <!-- TODO : ajouter la photo de  moi sans fond -->
+      <!-- //TODO: : ajouter la photo de  moi sans fond -->
       <!-- <div class="photoMe">
         <img src="@/assets/img/photoMe.png" alt="Photo de moi" class="absolute bottom-0 right-0 w-[200px] md:w-[400px] select-none pointer-events-none">
       </div> -->

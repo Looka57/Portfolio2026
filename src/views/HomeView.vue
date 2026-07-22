@@ -13,12 +13,12 @@ import Footer from '../components/layout/Footer.vue'
 <template>
 
     <Navbar />
-
+    
     <main>
 
-        <Hero />
+    <Hero />
 
-    <!-- <Testimonials />
+        <!-- <Testimonials />
 
     <Projects />
 
