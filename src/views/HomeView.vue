@@ -13,20 +13,20 @@ import Footer from '../components/layout/Footer.vue'
 <template>
 
     <Navbar />
-    
+
     <main>
 
-    <Hero />
+        <Hero />
 
-        <!-- <Testimonials />
+        <Testimonials />
 
-    <Projects />
+        <!-- <Projects />
 
-    <Skills />
+        <Skills />
 
-    <About />
+        <About />
 
-    <Contact /> -->
+        <Contact />  -->
 
     </main>
 
