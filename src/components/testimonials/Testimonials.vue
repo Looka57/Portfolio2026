@@ -32,6 +32,14 @@ import TestimonialCard from "./TestimonialCard.vue"
         <TestimonialCard />
       </div>
 
+      <!-- LOGO DES ENTREPRISES QUI M'ONT FAIT CONFIANEC -->
+       <div class="logoEntreprise flex flex-wrap justify-around gap-6 mt-8 w-full border border-2 border-[#8F98BE] rounded-lg p-4 sm:p-6 bg-[#1E293B] ">
+         <img src="@/assets/icons/cci.png" alt="Logo de CCI" class="h-12 sm:h-16 object-contain">
+         <img src="@/assets/icons/adem.png" alt="Logo de l'ADEM" class="h-12 sm:h-16 object-contain">
+         <img src="@/assets/icons/mns.webp" alt="Logo de MNS" class="h-12 sm:h-16 object-contain">
+         <img src="@/assets/icons/viessman.webp" alt="Logo de Viessmann" class="h-12 sm:h-16 object-contain">
+         <img src="@/assets/icons/asp.png" alt="Logo de l'ASP" class="h-12 sm:h-16 object-contain">
+       </div>
     </div>
   </section>
 </template>
