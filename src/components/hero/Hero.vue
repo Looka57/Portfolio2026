@@ -72,10 +72,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section id="hero" class="hero flex flex-col md:flex-row w-full min-h-screen md:h-screen overflow-hidden bg-[#0C131B] pt-24 md:pt-0">
+  <section id="hero"
+    class="hero flex flex-col md:flex-row w-full min-h-screen md:h-screen overflow-hidden bg-[#0C131B] pt-24 md:pt-0">
 
     <!-- COLONNE GAUCHE (TEXTE) -->
-    <div class="hero-col left-col w-full md:w-1/2 h-full min-h-[50vh] md:min-h-screen relative flex items-center justify-start px-6 md:pl-[10%] bg-cover bg-center z-[2] py-12 md:py-0">
+    <div
+      class="hero-col left-col w-full md:w-1/2 h-full min-h-[50vh] md:min-h-screen relative flex items-center justify-start px-6 md:pl-[10%] bg-cover bg-center z-[2] py-12 md:py-0">
       <div class="content max-w-[500px] text-white">
         <p class="subtitle text-xl md:text-3xl mb-2 text-white/90">Bonjour, je suis</p>
         <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 leading-tight">
@@ -86,12 +88,9 @@ onUnmounted(() => {
           Créatrice d'expériences digitales modernes, performantes et immersives.
         </p>
         <div class="buttons">
-          <a 
-            href="#projects"
-            class="btn inline-block px-7 py-3.5 bg-[#FEE4B3] text-[#0C131B] font-semibold rounded-xl no-underline transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg hover:shadow-[#FEE4B3]/20"
-          >
-            Découvrir mes projets
-          </a>
+          <a href="#projects"
+            class="btn inline-block px-7 py-3.5 bg-[#FEE4B3] text-[#0C131B] font-semibold rounded-xl no-underline transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg hover:shadow-[#FEE4B3]/20">
+            Découvrir mes projets </a>
         </div>
       </div>
     </div>
@@ -99,21 +98,25 @@ onUnmounted(() => {
     <!-- COLONNE DROITE (ANIMATION & PARALLAX) -->
     <div class="hero-col right-col w-full md:w-1/2 h-[50vh] md:h-full relative overflow-hidden">
       <div class="parallax relative w-full h-full">
-        
+
         <div class="layer sky absolute inset-0 z-[1]">
-          <img src="@/assets/font/ciel.png" alt="Ciel" class="absolute bottom-0 left-0 w-full h-full object-cover object-bottom select-none pointer-events-none">
+          <img src="@/assets/font/ciel.png" alt="Ciel"
+            class="absolute bottom-0 left-0 w-full h-full object-cover object-bottom select-none pointer-events-none">
         </div>
 
         <div class="layer mountains absolute inset-0 z-[5]">
-          <img src="@/assets/font/montagnes.png" alt="Montagnes" class="absolute bottom-0 left-0 w-full h-full object-cover object-bottom select-none pointer-events-none">
+          <img src="@/assets/font/montagnes.png" alt="Montagnes"
+            class="absolute bottom-0 left-0 w-full h-full object-cover object-bottom select-none pointer-events-none">
         </div>
 
         <div class="layer islands absolute inset-0 z-[10]">
-          <img src="@/assets/font/iles.png" alt="Îles" class="absolute bottom-0 left-0 w-full h-full object-cover object-bottom select-none pointer-events-none">
+          <img src="@/assets/font/iles.png" alt="Îles"
+            class="absolute bottom-0 left-0 w-full h-full object-cover object-bottom select-none pointer-events-none">
         </div>
 
         <div class="layer road absolute inset-0 z-[15]">
-          <img src="@/assets/font/route.png" alt="Route" class="absolute bottom-0 left-0 w-full h-full object-cover object-bottom select-none pointer-events-none">
+          <img src="@/assets/font/route.png" alt="Route"
+            class="absolute bottom-0 left-0 w-full h-full object-cover object-bottom select-none pointer-events-none">
         </div>
 
         <!-- PERSONNAGE -->
@@ -122,9 +125,9 @@ onUnmounted(() => {
         </div>
 
         <div class="layer foreground absolute inset-0 z-[30]">
-          <img src="@/assets/font/1ert_plan.png" alt="Premier plan" class="w-full h-auto absolute bottom-0 top-auto object-contain select-none pointer-events-none">
+          <img src="@/assets/font/1ert_plan.png" alt="Premier plan"
+            class="w-full h-auto absolute bottom-0 top-auto object-contain select-none pointer-events-none">
         </div>
-
       </div>
     </div>
 

@@ -20,11 +20,11 @@ import Footer from '../components/layout/Footer.vue'
 
         <Testimonials />
 
-        <!-- <Projects />
+        <Projects />
 
-        <Skills />
+       <Skills />
 
-        <About />
+         <!-- <About />
 
         <Contact />  -->
 
