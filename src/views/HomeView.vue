@@ -22,7 +22,7 @@ import Footer from '../components/layout/Footer.vue'
 
         <Projects />
 
-       <Skills />
+       <!-- <Skills /> -->
 
          <!-- <About />
 
