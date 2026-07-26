@@ -10,7 +10,7 @@
 
           <!-- CARD 1: ADEM -->
           <article
-            class="group relative w-full sm:w-[328px] max-w-[340px] bg-[#1E293B]/40 border-2 border-[#121137] rounded-3xl p-4 shadow-[3px_5px_15px_#121137] transition-all duration-300 hover:scale-105 hover:border-[#FEE4B3]">
+            class="group relative w-full sm:w-[328px] max-w-[340px] bg-[#1E293B]/40 border-2 border-[#121137] rounded-3xl p-4 shadow-[3px_5px_15px_#121137] transition-all duration-300 hover:scale-105 hover:border-[#8F98BE] ">
             <!-- Cadre écran -->
             <div
               class="relative w-full h-[200px] sm:h-[220px] flex items-center justify-center overflow-hidden rounded-xl bg-black/20">
@@ -38,7 +38,7 @@
                 Rapport d'activité 2023
               </h3>
               <p class="text-xs text-gray-300 line-clamp-2 mb-4">
-                Projet de stage réalisé pour le Ministère de l'Emploi du Luxemboourg (ADEM).
+                Projet de stage réalisé pour le Ministère du travail du Luxemboourg (ADEM).
               </p>
 
               <!-- Logos Stack -->
@@ -54,15 +54,14 @@
 
 
           <!-- CARD 2: MNS -->
-          <article
-            class="group relative w-full sm:w-[328px] max-w-[340px] bg-[#1E293B]/60 border-2 border-[#121137] rounded-3xl p-4 shadow-[3px_5px_15px_#121137] transition-all duration-300 hover:scale-105 hover:border-[#FEE4B3]">
+          <article class="group relative w-full sm:w-[328px] max-w-[340px] bg-[#1E293B]/60 border-2 border-[#121137] rounded-3xl p-4 shadow-[3px_5px_15px_#121137] transition-all duration-300 hover:scale-105 hover:border-[#8F98BE] ">
 
             <div class="relative w-full h-[200px] sm:h-[220px] flex items-center justify-center overflow-hidden rounded-xl bg-black/20">
               <img class="w-full h-full object-contain pointer-events-none select-none" src="@/assets/img/ecran2.png"
                 alt="Moniteur pixel">
 
               <div class="absolute inset-x-6 top-4 bottom-9 flex items-center justify-center overflow-hidden p-2">
-                <img class="max-w-full max-h-full p-3 object-cover" src="@/assets/img/admin.jpg" alt="Admin MNS">
+                <img class="max-w-full max-h-full rounded-lg object-cover" src="@/assets/img/admin.jpg" alt="Admin MNS">
 
                 <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <a href="https://github.com/Looka57/AdminMnsV1.git" target="_blank"
@@ -92,17 +91,17 @@
 
           <!-- CARD 3: ASP -->
           <article
-            class="group relative w-full sm:w-[328px] max-w-[340px] bg-[#1E293B]/60 border-2 border-[#121137] rounded-3xl p-4 shadow-[3px_5px_15px_#121137] transition-all duration-300 hover:scale-105 hover:border-[#FEE4B3]">
+            class="group relative w-full sm:w-[328px] max-w-[340px] bg-[#1E293B]/60 border-2 border-[#121137] rounded-3xl p-4 shadow-[3px_5px_15px_#121137] transition-all duration-300 hover:scale-105 hover:border-[#8F98BE]">
 
             <div
               class="relative w-full h-[200px] sm:h-[220px] flex items-center justify-center overflow-hidden rounded-xl bg-black/20">
               <img class="w-full h-full object-contain pointer-events-none select-none" src="@/assets/img/ecran3.png"
                 alt="Moniteur pixel">
 
-            <div class="absolute inset-x-6 top-2 bottom-5 flex items-center justify-center overflow-hidden p-2">
-                <img class="max-w-full max-h-full object-contain" src="@/assets/img/aspJudo.png" alt="AS Porcelette Arts Martiaux">
+            <div class="absolute inset-x-6 top-2 bottom-5 flex items-center justify-center overflow-hidden p-1">
+                <img class="max-w-full max-h-full object-contain rounded-lg" src="@/assets/img/aspJudo.png" alt="AS Porcelette Arts Martiaux">
                 <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <a href="https://asporcelette-art-martiaux.fr/" target="_blank" class="px-4 py-2 bg-[#FEE4B3] text-black rounded-lg text-sm font-semibold hover:bg-[#D7F3F5] transition-colors shadow-lg">
+                  <a href="https://asporcelette-art-martiaux.fr/" target="_blank" class="px-4 py-2 bg-[#8F98BE]  text-black rounded-lg text-sm font-semibold hover:bg-[#D7F3F5] transition-colors shadow-lg">
                     Voir le site
                   </a>
                 </div>
