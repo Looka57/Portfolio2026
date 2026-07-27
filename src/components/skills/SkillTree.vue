@@ -3,77 +3,80 @@ import { reactive, computed, ref } from 'vue'
 
 /* ==========================================================
    1. CONFIGURATION DU CENTRE DE L'ARBRE
-   ==========================================================
-   Coordonnées du cœur de l'arbre de compétences.
-   Tous les calculs de position radiale utilisent ce point.
-========================================================== */
+   ========================================================== */
 const cx = 650, cy = 410
 
 /* ==========================================================
    2. MÉTHODE DE GÉNÉRATION DES LOSANGES (Niveau 0)
-   ==========================================================
-   Calcule les 4 points SVG (Haut, Droite, Bas, Gauche) 
-   pour dessiner le losange principal des catégories.
-========================================================== */
+   ========================================================== */
 function getDiamondPoints(x, y, size) {
   return `${x},${y - size} ${x + size},${y} ${x},${y + size} ${x - size},${y}`
 }
 
 /* ==========================================================
    3. DONNÉES STRUCTURÉES DE L'ARBRE DE COMPÉTENCES
-   ==========================================================
-   Contient la hiérarchie complète (branches, sous-branches,
-   statuts verrouillés, descriptions, niveaux et projets).
-========================================================== */
+   ========================================================== */
 const tree = reactive([
   {
     key: 'front', color: '#3ea6ff', angle: -90, label: 'Front-end', icon: '</>',
     desc: 'Interfaces web modernes, réactives et accessibles.', level: 4, expanded: false,
-    projects: ['Portfolio', 'ASPPorcelette', 'Admin Mns', 'Adem'],
+    projects: ['Tous'],
     children: [
-      { label: 'HTML / CSS', icon: 'CSS', desc: 'Structure sémantique, Flexbox, Grid, Animations CSS.', level: 5 },
       {
         label: 'JavaScript', icon: 'JS', desc: 'Logique ES6+, Async/Await, manipulation du DOM.', level: 3, expanded: false,
         children: [
-          { label: 'Vue.js', icon: 'V', desc: 'Framework principal, Composition API, Pinia, Vue Router.', level: 3, projects: ['Portfolio', 'ASPPorcelette'] },
+          { label: 'Vue.js', icon: 'V', desc: 'Framework principal, Composition API, Pinia, Vue Router.', level: 3, projects: ['Portfolio2026', 'ASPPorcelette'] },
           { label: 'Nuxt.js', icon: 'N', desc: 'SSR / SSG pour Vue, optimisation SEO.', level: 2, locked: true },
         ]
       },
+      { label: 'HTML / CSS', icon: 'CSS', desc: 'Structure sémantique, Flexbox, Grid, Animations CSS.', level: 5, projects: ['Tous'] },
       {
-        label: 'Bootstrap', icon: 'B', desc: "Grille responsive & composants UI.", level: 4,
+        label: 'Bootstrap', icon: 'B', desc: "Grille responsive & composants UI.", level: 4, projects: ['Adem', 'AdminMns', 'ASPPorcelette', 'Portfolio'],
         children: [
-          { label: 'Tailwind CSS', icon: 'TW', desc: "Framework CSS utility-first.", level: 1, expanded: false, projects: ['Portfolio Vue 3'] },
+          { label: 'Tailwind CSS', icon: 'TW', desc: "Framework CSS utility-first.", level: 1, expanded: false, projects: ['Portfolio2026'] },
+          { label: 'React', icon: 'R', desc: "Framework JavaScript pour l'interface utilisateur.", locked: true, },
         ],
       },
-
     ]
   },
   {
     key: 'back', color: '#4fd67a', angle: -18, label: 'Back-end', icon: 'DB',
-    desc: 'Architecture serveur robuste et gestion des données.', level: 4, expanded: false,
+    desc: 'Conception architecture serveur robuste, gestion sécurisée des données et intégration fluide avec le front-end.', level: 4, expanded: false,
     children: [
-      { label: 'C#', icon: 'C#', desc: 'Langage Poo principal pour la logique métier backend.', level: 4 },
       {
         label: 'ASP.NET', icon: 'AS', desc: 'Framework applicatif Web API & Microservices.', level: 4, expanded: false,
         children: [
-          { label: 'Entity Framework', icon: 'EF', desc: 'ORM, migrations, requêtes LINQ optimisées.', level: 4 },
-          { label: 'API REST', icon: '{}', desc: "Conception, documentation Swagger et sécurité JWT.", level: 5, projects: ['API Gestion Stock'] },
+          { label: 'Entity Framework', icon: 'EF', desc: 'ORM, migrations, requêtes LINQ optimisées.', level: 4, projects: ['AdminMns', 'ASPPorcelette'] },
+          { label: 'API REST', icon: '{}', desc: "Conception, documentation Swagger et sécurité JWT.", level: 5, projects: ['AdminMns', 'ASPPorcelette'] },
         ]
       },
-      { label: 'SQL Server', icon: 'SQL', desc: 'Bases de données relationnelles, procédures stockées.', level: 3 },
+      { label: 'C#', icon: 'C#', desc: 'Langage POO principal pour la logique métier backend.', level: 4, projects: ['AdminMns', 'ASPPorcelette', 'Portfolio2026'] },
+      {
+        label: 'Base de données', icon: 'BDD', desc: 'Bases de données relationnelles.', level: 3,
+        children: [
+          { label: 'SQL Server', icon: 'SQL', desc: 'Bases relationnelles, procédures stockées, ORM (Entity Framework) et requêtes LINQ.', level: 3, projects: ['AdminMns', 'ASPPorcelette'] },
+          { label: 'MySQL', icon: 'MSQL', desc: 'Modélisation relationnelle, migrations et optimisation de requêtes SQL.', level: 4, projects: ['Adem', 'Portfolio'] },
+        ]
+      },
     ]
   },
   {
     key: 'tools', color: '#ffb547', angle: 54, label: 'Outils', icon: '⚙',
-    desc: 'Productivité, déploiement et contrôle de version.', level: 4, expanded: false,
+    desc: 'Productivité, déploiement et contrôle de version.', level: 3, expanded: false,
     children: [
-      { label: 'Git / GitHub', icon: 'Git', desc: 'Versioning, gestion de branches, Pull Requests.', level: 4 },
-      { label: 'VS Code', icon: 'VS', desc: 'Environnement de développement principal.', level: 5 },
+      { label: 'GitHub', icon: 'Git', desc: 'Versioning, gestion de branches, Pull Requests.', level: 3 },
       {
-        label: 'Docker', icon: '🐳', desc: 'Conteneurisation des applications et environnements.', level: 3, expanded: false,
+        label: 'VS Code', icon: 'VS', desc: 'Environnement de développement principal.', level: 5,
         children: [
-          { label: 'CI / CD', icon: '∞', desc: 'Automatisation des tests et déploiements.', level: 2, locked: true },
-          { label: 'Déploiement OVH', icon: '☁', desc: 'Mise en ligne, VPS, configuration Nginx.', level: 3 },
+          { label: 'Visual Studio Code', icon: 'VS', desc: 'IDE principal pour le développement.', level: 4 },
+        ]
+      },
+      { label: 'Figma', icon: 'Fg', desc: 'Versioning, gestion de branches, Pull Requests.', level: 4 },
+      {
+        label: 'Docker', icon: '🐳', desc: 'Conteneurisation des applications et environnements.', level: 2, expanded: false,
+        children: [
+          { label: 'CI / CD', icon: '∞', desc: 'Automatisation des tests et déploiements.', level: 2 },
+          { label: 'Déploiement OVH', icon: '☁', desc: 'Mise en ligne, VPS, configuration Nginx.', level: 2 },
         ]
       },
     ]
@@ -94,28 +97,26 @@ const tree = reactive([
     ]
   },
   {
-    key: 'soft', color: '#ff5d8f', angle: 198, label: 'Soft skills', icon: '♥',
-    desc: 'Compétences humaines, organisation et méthode.', level: 5, expanded: false,
+    key: 'soft', color: '#ff5d8f', angle: 198, label: 'Soft Skills', icon: '🧠',
+    desc: 'Compétences humaines, organisation et méthode de travail.', level: 4, expanded: false,
     children: [
-      { label: 'Autonomie', icon: '!', desc: 'Gestion de projets en solo, prise d’initiative.', level: 5 },
+      { label: 'Autonomie & Initiative', icon: '🎯', desc: 'Gestion de projets en autonomie, force de proposition et auto-formation.', level: 4 },
+      { label: 'Communication & Écoute', icon: '💬', desc: 'Vulgarisation technique, esprit d’équipe et restitution claire.', level: 4, locked: false },
+      { label: 'Résolution de Problèmes', icon: '🧩', desc: 'Analyse critique, adaptabilité face aux imprévus et esprit logique.', level: 4 },
       {
-        label: 'Gestion de projet', icon: '👥', desc: 'Priorisation des tâches et méthodologies agiles.', level: 4, expanded: false,
+        label: 'Gestion de Projet', icon: '📋', desc: 'Planification, méthodes agiles et organisation du travail.', level: 3,
         children: [
-          { label: 'Adaptabilité', icon: '⇄', desc: "Apprentissage rapide et flexibilité face aux changements.", level: 5 },
-          { label: 'Résolution de problèmes', icon: '💡', desc: 'Débogage & analyse.', level: 5 },
+          { label: 'Méthodes Agiles', icon: '🔄', desc: 'Pratique de Scrum et Kanban, découpage en user stories.', level: 3 },
+          { label: 'Outils de Suivi', icon: '📌', desc: 'Jira, Trello et Notion pour le suivi de sprints et la documentation.', level: 4 }
         ]
       },
-      { label: 'Communication', icon: '💬', desc: 'Vulgarisation technique et travail en équipe.', level: 3, locked: true },
     ]
-  },
+  }
 ])
 
 /* ==========================================================
    4. CALCUL TRIGONOMÉTRIQUE (POLAIRE -> CARTÉSIEN)
-   ==========================================================
-   Transforme un angle (en degrés) et un rayon (distance) 
-   en coordonnées [X, Y] par rapport au centre (cx, cy).
-========================================================== */
+   ========================================================== */
 function polar(angleDeg, r) {
   const rad = (angleDeg * Math.PI) / 180
   return [cx + r * Math.cos(rad), cy + r * Math.sin(rad)]
@@ -123,67 +124,52 @@ function polar(angleDeg, r) {
 
 /* ==========================================================
    5. DISTANCE RADIALE PAR NIVEAU (DEPTH)
-   ==========================================================
-   Définit l'éloignement en pixels depuis le centre 
-   pour chaque profondeur dans l'arbre.
-========================================================== */
+   ========================================================== */
 function getNodeRadius(depth) {
-  if (depth === 0) return 220 // Niveau 1 (Branches principales)
-  if (depth === 1) return 325 // Niveau 2 (Sous-compétences)
-  return 425                  // Niveau 3 (Feuilles finales)
+  if (depth === 0) return 220
+  if (depth === 1) return 325
+  return 425
 }
 
 /* ==========================================================
    6. ÉCARTEMENT D'ANGLE DES ENFANTS
-   ==========================================================
-   Définit l'angle total d'éventail utilisé pour répartir 
-   les enfants autour de la direction de leur parent.
-========================================================== */
+   ========================================================== */
 function getSpreadAngle(depth) {
   return depth === 0 ? 36 : 24
 }
 
 /* ==========================================================
-   7. PROPRIÉTÉ CALCULÉE : GÉNÉRATION DES NŒUDS AFFICHER
-   ==========================================================
-   Parcourt récursivement 'tree' pour générer une liste à plat
-   de tous les nœuds visibles à l'écran avec leurs positions X/Y.
-========================================================== */
+   7. PROPRIÉTÉ CALCULÉE : NŒUDS
+   ========================================================== */
 const nodes = computed(() => {
   const list = []
 
-  // Fonction récursive d'exploration des enfants
   function walk(node, x, y, color, angle, depth, pathKey) {
     const hasKids = !!(node.children && node.children.length)
 
-    // Ajout du nœud courant à la liste à afficher
     list.push({
       keyId: pathKey,
       label: node.label, icon: node.icon, desc: node.desc, level: node.level || 3,
       locked: !!node.locked, hasKids, expanded: !!node.expanded,
       x, y, color, depth, ref: node,
-      isNew: depth > 0 // Active l'animation d'apparition pour les enfants
+      isNew: depth > 0
     })
 
-    // Si le nœud est ouvert, débloqué et possède des enfants, on calcule leur position
     if (hasKids && node.expanded && !node.locked) {
       const n = node.children.length
       const stepRadius = getNodeRadius(depth + 1)
       const totalSpread = getSpreadAngle(depth)
 
       node.children.forEach((child, i) => {
-        // Calcul du décalage d'angle individuel pour chaque enfant
         const off = n === 1 ? 0 : (i - (n - 1) / 2) * (totalSpread / (n - 1))
         const childAngle = angle + off
         const [cx2, cy2] = polar(childAngle, stepRadius)
 
-        // Appel récursif pour l'enfant
         walk(child, cx2, cy2, color, childAngle, depth + 1, `${pathKey}-${i}`)
       })
     }
   }
 
-  // Initialisation du parcours depuis la racine pour chaque branche principale
   tree.forEach((branch, index) => {
     const [hx, hy] = polar(branch.angle, getNodeRadius(0))
     walk(branch, hx, hy, branch.color, branch.angle, 0, `root-${index}`)
@@ -193,15 +179,11 @@ const nodes = computed(() => {
 })
 
 /* ==========================================================
-   8. PROPRIÉTÉ CALCULÉE : GÉNÉRATION DES TRAITS / LIENS SVG
-   ==========================================================
-   Construit toutes les connexions entre le centre et les nœuds,
-   ainsi qu'entre les nœuds parents et leurs enfants visibles.
-========================================================== */
+   8. PROPRIÉTÉ CALCULÉE : LIENS SVG
+   ========================================================== */
 const edges = computed(() => {
   const list = []
 
-  // Fonction récursive d'exploration des connexions
   function walk(node, x, y, color, angle, depth, pathKey) {
     if (node.children && node.expanded && !node.locked) {
       const n = node.children.length
@@ -214,16 +196,12 @@ const edges = computed(() => {
         const [cx2, cy2] = polar(childAngle, stepRadius)
         const edgeKey = `${pathKey}-${i}`
 
-        // Ajout de la ligne parent -> enfant
         list.push({ id: edgeKey, x1: x, y1: y, x2: cx2, y2: cy2, color, locked: !!child.locked, isNew: depth > 0 })
-
-        // Poursuite de la recherche des liens plus bas
         walk(child, cx2, cy2, color, childAngle, depth + 1, edgeKey)
       })
     }
   }
 
-  // Création des liens racine (du centre 'cx, cy' vers les catégories principales)
   tree.forEach((branch, index) => {
     const [hx, hy] = polar(branch.angle, getNodeRadius(0))
     const edgeKey = `root-edge-${index}`
@@ -235,25 +213,19 @@ const edges = computed(() => {
 })
 
 /* ==========================================================
-   9. GESTION DE LA SIDEBAR DE DÉTAILS
+   9. SIDEBAR & INTERACTION
    ========================================================== */
 const activeNode = ref(null)
 
-// Ouvre le panneau de détails
 function selectNode(node) {
   if (node.locked) return
   activeNode.value = node
 }
 
-// Ferme le panneau de détails
 function closeSidebar() {
   activeNode.value = null
 }
 
-/* ==========================================================
-  10. COMMANDES D'EXPANSION GLOBALE
-   ========================================================== */
-// Fonction récursive pour modifier l'état 'expanded' de tous les sous-éléments
 function setAllExpanded(items, state) {
   items.forEach(item => {
     if (!item.locked && item.children && item.children.length) {
@@ -263,17 +235,9 @@ function setAllExpanded(items, state) {
   })
 }
 
-// Ouvre tout l'arbre
-function expandAll() {
-  setAllExpanded(tree, true)
-}
+function expandAll() { setAllExpanded(tree, true) }
+function collapseAllTree() { setAllExpanded(tree, false) }
 
-// Replie tout l'arbre
-function collapseAllTree() {
-  setAllExpanded(tree, false)
-}
-
-// Ferme récursivement les enfants lors du repliement d'un parent
 function collapseAll(children) {
   children.forEach((c) => {
     c.expanded = false
@@ -281,25 +245,25 @@ function collapseAll(children) {
   })
 }
 
-/* ==========================================================
-   11. INTERACTION CLIC SUR UN NŒUD
-   ========================================================== */
 function toggle(node) {
   const refNode = node.ref
   if (refNode.locked) return
 
-  // Si le nœud a des enfants, on inverse son état (ouvert / fermé)
   if (refNode.children && refNode.children.length) {
     refNode.expanded = !refNode.expanded
     if (!refNode.expanded) collapseAll(refNode.children)
   }
 
-  // Ouvre le volet latéral d'informations
-  selectNode(node)
+  // SI LE NŒUD ACTIF EST DÉJÀ CELUI-CI -> ON FERME LA SIDEBAR !
+  if (activeNode.value && activeNode.value.keyId === node.keyId) {
+    activeNode.value = null
+  } else {
+    selectNode(node)
+  }
 }
 
 /* ==========================================================
-   12. GESTION DES TOOLTIPS AU SURVOL
+   10. TOOLTIP
    ========================================================== */
 const tip = reactive({ show: false, x: 0, y: 0, label: '', desc: '' })
 
@@ -311,15 +275,13 @@ function showTip(e, node) {
   tip.show = true
 }
 
-function hideTip() {
-  tip.show = false
-}
+function hideTip() { tip.show = false }
 </script>
 
 <template>
-  <div class="skill-tree-wrap">
+  <div class="skill-tree-wrap " >
 
-    <!-- Boutons de commande rapide (Haut Droit) -->
+    <!-- Boutons de commande rapide -->
     <div class="tree-controls">
       <button @click="expandAll" class="ctrl-btn">⚡ Tout déplier</button>
       <button @click="collapseAllTree" class="ctrl-btn">↺ Replier</button>
@@ -328,13 +290,76 @@ function hideTip() {
     <!-- Rendu graphique SVG principal -->
     <svg viewBox="0 0 1300 820" class="skill-tree-svg">
       <defs>
-        <!-- Dégradé de couleur pour le cercle tournant du centre -->
         <linearGradient id="coreGrad" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stop-color="#3ea6ff" />
           <stop offset="50%" stop-color="#b073ff" />
           <stop offset="100%" stop-color="#ff5d8f" />
         </linearGradient>
       </defs>
+
+      <!-- COUCHE 0 : OPTION 3 - CIRCUITS ÉLECTRONIQUES (PCB TECH) -->
+      <g class="pcb-circuit-layer">
+        <!-- Coin Haut-Gauche (Bleu) -->
+        <g stroke="#3ea6ff" opacity="0.35" fill="none" stroke-width="1.5">
+          <path d="M 40,40 L 180,40 L 260,120 L 380,120" />
+          <path d="M 40,60 L 160,60 L 230,130 L 320,130" />
+          <circle cx="380" cy="120" r="4" fill="#3ea6ff" />
+          <circle cx="320" cy="130" r="3.5" fill="#3ea6ff" />
+          <rect x="35" y="35" width="10" height="10" fill="#3ea6ff" />
+        </g>
+
+        <!-- Coin Haut-Droit (Vert) -->
+        <g stroke="#4fd67a" opacity="0.35" fill="none" stroke-width="1.5">
+          <path d="M 1260,40 L 1120,40 L 1040,120 L 920,120" />
+          <path d="M 1260,65 L 1140,65 L 1070,135 L 980,135" />
+          <circle cx="920" cy="120" r="4" fill="#4fd67a" />
+          <circle cx="980" cy="135" r="3.5" fill="#4fd67a" />
+          <rect x="1255" y="35" width="10" height="10" fill="#4fd67a" />
+        </g>
+
+        <!-- Coin Bas-Droit (Orange) -->
+        <g stroke="#ffb547" opacity="0.35" fill="none" stroke-width="1.5">
+          <path d="M 1260,780 L 1100,780 L 1020,700 L 900,700" />
+          <path d="M 1260,755 L 1120,755 L 1050,685 L 960,685" />
+          <circle cx="900" cy="700" r="4" fill="#ffb547" />
+          <circle cx="960" cy="685" r="3.5" fill="#ffb547" />
+          <rect x="1255" y="775" width="10" height="10" fill="#ffb547" />
+        </g>
+
+        <!-- Coin Bas-Gauche (Rose) -->
+        <g stroke="#ff5d8f" opacity="0.35" fill="none" stroke-width="1.5">
+          <path d="M 40,780 L 200,780 L 280,700 L 400,700" />
+          <path d="M 40,755 L 180,755 L 250,685 L 340,685" />
+          <circle cx="400" cy="700" r="4" fill="#ff5d8f" />
+          <circle cx="340" cy="685" r="3.5" fill="#ff5d8f" />
+          <rect x="35" y="775" width="10" height="10" fill="#ff5d8f" />
+        </g>
+
+        <!-- Pistes centrales reliant l'arbre (Violet) -->
+        <g stroke="#b073ff" opacity="0.3" fill="none" stroke-width="1.5">
+          <path d="M 500,410 L 550,410 M 750,410 L 800,410" />
+          <circle cx="500" cy="410" r="3" fill="#b073ff" />
+          <circle cx="800" cy="410" r="3" fill="#b073ff" />
+        </g>
+
+        <!-- SIGNAUX LUMINEUX VISIBLES (Fixes en position, effet néon/pulsation fluide) -->
+        <!-- SIGNAUX LUMINEUX VISIBLES (2 par couleur = 8 au total) -->
+        <!-- Bleu (Haut-Gauche) -->
+        <circle cx="260" cy="120" r="3.5" fill="#3ea6ff" class="pcb-signal signal-1" />
+        <circle cx="180" cy="40" r="3.5" fill="#3ea6ff" class="pcb-signal signal-2" />
+
+        <!-- Vert (Haut-Droit) -->
+        <circle cx="1040" cy="120" r="3.5" fill="#4fd67a" class="pcb-signal signal-3" />
+        <circle cx="1120" cy="40" r="3.5" fill="#4fd67a" class="pcb-signal signal-4" />
+
+        <!-- Jaune / Orange (Bas-Droit) -->
+        <circle cx="1020" cy="700" r="3.5" fill="#ffb547" class="pcb-signal signal-5" />
+        <circle cx="1100" cy="780" r="3.5" fill="#ffb547" class="pcb-signal signal-6" />
+
+        <!-- Rose / Rouge (Bas-Gauche) -->
+        <circle cx="280" cy="700" r="3.5" fill="#ff5d8f" class="pcb-signal signal-7" />
+        <circle cx="200" cy="780" r="3.5" fill="#ff5d8f" class="pcb-signal signal-8" />
+      </g>
 
       <!-- Couche 1 : Rendu des branches / liaisons -->
       <g class="edges-layer">
@@ -346,20 +371,17 @@ function hideTip() {
       <!-- Couche 2 : Cœur central de l'arbre -->
       <g class="core-group">
         <circle class="core-bg" :cx="cx" :cy="cy" r="85" />
-        <!-- Anneau animé en rotation -->
         <circle class="core-ring" :cx="cx" :cy="cy" r="98" stroke="url(#coreGrad)" stroke-dasharray="415 200"
           :transform="`rotate(-90 ${cx} ${cy})`" />
 
-        <!-- Avatar / Sprite au centre -->
         <image href="@/assets/sprite/marche.PNG" :x="cx - 35" :y="cy - 65" width="70" height="70"
           class="core-avatar-img" />
 
-        <!-- Textes du centre -->
         <text class="core-label" :x="cx" :y="cy + 22">COMPÉTENCES</text>
         <text class="core-count" :x="cx" :y="cy + 45">18 / 24</text>
       </g>
 
-      <!-- Couche 3 : Rendu des nœuds (Formes, Icônes et Textes) -->
+      <!-- Couche 3 : Rendu des nœuds -->
       <g class="nodes-layer">
         <g v-for="node in nodes" :key="node.keyId" class="node-group" :class="{
           locked: node.locked,
@@ -369,34 +391,27 @@ function hideTip() {
         }" :style="{ '--node-color': node.color }" @click="toggle(node)" @mousemove="showTip($event, node)"
           @mouseleave="hideTip">
 
-          <!-- Forme LOSANGE (Racines / Niveaux 0) -->
           <polygon v-if="node.depth === 0" class="node-shape-diamond" :points="getDiamondPoints(node.x, node.y, 24)"
             fill="#0b0f1a" :stroke="node.color" stroke-width="2" />
 
-          <!-- Forme CERCLE (Enfants / Niveaux > 0) -->
           <circle v-else class="node-shape-circle" :cx="node.x" :cy="node.y" r="22" fill="#0b0f1a" :stroke="node.color"
             stroke-width="2" />
 
-          <!-- Icône centrale -->
           <text class="icon" :x="node.x" :y="node.y">{{ node.locked ? '🔒' : node.icon }}</text>
-
-          <!-- Libellé du nœud -->
           <text class="label" :x="node.x" :y="node.y + (node.depth === 0 ? 38 : 34)">{{ node.label }}</text>
-
-          <!-- Flèche d'expansion (si le nœud a des enfants) -->
           <text v-if="node.hasKids && !node.locked" class="expand-hint" :x="node.x"
             :y="node.y + (node.depth === 0 ? 52 : 48)">{{ node.expanded ? '▲' : '▼' }}</text>
         </g>
       </g>
     </svg>
 
-    <!-- Tooltip flottant au survol -->
+    <!-- Tooltip -->
     <div class="tooltip" :class="{ show: tip.show }" :style="{ left: tip.x + 'px', top: tip.y + 'px' }">
       <div class="t-label">{{ tip.label }}</div>
       <div class="t-desc">{{ tip.desc }}</div>
     </div>
 
-    <!-- Volet latéral de détail au clic -->
+    <!-- Sidebar -->
     <transition name="slide-panel">
       <div v-if="activeNode" class="skill-sidebar">
         <button class="close-btn" @click="closeSidebar">✕</button>
@@ -408,7 +423,6 @@ function hideTip() {
 
         <p class="sidebar-desc">{{ activeNode.desc }}</p>
 
-        <!-- Notation en étoiles -->
         <div class="mastery-box">
           <span class="m-title">Niveau de maîtrise</span>
           <div class="stars">
@@ -416,7 +430,6 @@ function hideTip() {
           </div>
         </div>
 
-        <!-- Liste des projets liés -->
         <div v-if="activeNode.ref.projects" class="projects-box">
           <h4>Projets associés :</h4>
           <ul>
@@ -430,9 +443,6 @@ function hideTip() {
 </template>
 
 <style scoped>
-/* ==========================================================
-   STYLES ET VARIABLES DU COMPOSANT
-   ========================================================== */
 .skill-tree-wrap {
   --text: #e8ecf5;
   --muted: #7a86a3;
@@ -442,10 +452,80 @@ function hideTip() {
   margin: 0 auto;
 }
 
-/* Boutons de contrôle haut-droit */
+/* ==========================================================
+   ANIMATIONS DES CIRCUITS PCB (OPTION 3)
+   ========================================================== */
+/* ==========================================================
+   ANIMATIONS DES CIRCUITS PCB (SANS DÉBORDEMENT)
+   ========================================================== */
+.pcb-signal {
+  /* Définit le point d'origine de transformation sur le centre de chaque cercle */
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: pcbPulse 3s infinite ease-in-out;
+}
+
+/* Décalages temporels pour chaque signal */
+
+.signal-1 {
+  animation-delay: 0s;
+}
+
+.signal-2 {
+  animation-delay: 0.8s;
+}
+
+.signal-3 {
+  animation-delay: 0.3s;
+}
+
+.signal-4 {
+  animation-delay: 1.1s;
+}
+
+.signal-5 {
+  animation-delay: 0.6s;
+}
+
+.signal-6 {
+  animation-delay: 1.4s;
+}
+
+.signal-7 {
+  animation-delay: 0.9s;
+}
+
+.signal-8 {
+  animation-delay: 1.7s;
+}
+
+@keyframes pcbPulse {
+  0% {
+    opacity: 0.2;
+    transform: scale(0.7);
+    /* Réduction contenue sur le centre du cercle */
+    filter: drop-shadow(0 0 0px transparent);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+    /* Léger grossissement local sans sortir */
+    filter: drop-shadow(0 0 6px currentColor);
+    /* Effet néon très propre */
+  }
+
+  100% {
+    opacity: 0.2;
+    transform: scale(0.7);
+    filter: drop-shadow(0 0 0px transparent);
+  }
+}
+
+/* Controls */
 .tree-controls {
   position: absolute;
-  top: 10px;
+  top: -15px;
   right: 15px;
   z-index: 20;
   display: flex;
@@ -471,7 +551,7 @@ function hideTip() {
   color: #fff;
 }
 
-/* Conteneur SVG */
+/* SVG Base */
 .skill-tree-svg {
   width: 100%;
   height: auto;
@@ -479,14 +559,12 @@ function hideTip() {
   display: block;
 }
 
-/* Style des liens / branches */
 .link {
   fill: none;
   stroke-width: 2.5;
   stroke-linecap: round;
 }
 
-/* Animation d'apparition des nouvelles branches */
 .branch-pop {
   animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
@@ -505,7 +583,7 @@ function hideTip() {
   }
 }
 
-/* Interactivité des nœuds */
+/* Nodes */
 .node-group {
   cursor: pointer;
 }
@@ -524,14 +602,12 @@ function hideTip() {
   transition: stroke-width .2s ease, filter .2s ease;
 }
 
-/* Effet Glow au survol */
 .node-group:hover .node-shape-diamond,
 .node-group:hover .node-shape-circle {
   stroke-width: 3.5px;
   filter: drop-shadow(0 0 8px var(--node-color));
 }
 
-/* Animation de pulsation passive sur les nœuds dépliables */
 .node-group.pulsing .node-shape-diamond,
 .node-group.pulsing .node-shape-circle {
   animation: subtlePulse 2.5s ease-in-out infinite;
@@ -551,7 +627,6 @@ function hideTip() {
   }
 }
 
-/* Typographie SVG */
 .icon {
   font-size: 14px;
   text-anchor: middle;
@@ -576,7 +651,7 @@ function hideTip() {
   pointer-events: none;
 }
 
-/* Style du cercle central */
+/* Core Ring */
 .core-bg {
   fill: var(--panel);
   stroke: #1c2436;
@@ -615,7 +690,7 @@ function hideTip() {
   font-weight: 700;
 }
 
-/* Style du Tooltip */
+/* Tooltip & Sidebar */
 .tooltip {
   position: fixed;
   z-index: 60;
@@ -646,11 +721,10 @@ function hideTip() {
   color: var(--muted);
 }
 
-/* Style du Panneau de Détails (Sidebar) */
 .skill-sidebar {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 35%;
+  left: -50px;
   width: 280px;
   background: rgba(11, 15, 26, 0.95);
   border: 1px solid #2c3550;
@@ -747,7 +821,6 @@ function hideTip() {
   margin-bottom: 4px;
 }
 
-/* Transitions Vue pour la Sidebar */
 .slide-panel-enter-active,
 .slide-panel-leave-active {
   transition: all 0.3s ease;
