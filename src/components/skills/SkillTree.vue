@@ -279,7 +279,7 @@ function hideTip() { tip.show = false }
 </script>
 
 <template>
-  <div class="skill-tree-wrap " >
+  <div class="skill-tree-wrap ">
 
     <!-- Boutons de commande rapide -->
     <div class="tree-controls">

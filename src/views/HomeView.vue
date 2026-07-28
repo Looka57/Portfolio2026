@@ -24,9 +24,9 @@ import Footer from '../components/layout/Footer.vue'
 
        <Skills />
 
-         <!-- <About />
+         <About />
 
-        <Contact />  -->
+         <!--<Contact />  -->
 
     </main>
 
