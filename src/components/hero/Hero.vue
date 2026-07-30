@@ -72,10 +72,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section id="hero" class="hero flex flex-col md:flex-row w-full min-h-screen md:h-screen overflow-hidden bg-[#0C131B] pt-24 md:pt-0">
+  <section id="hero"
+    class="hero flex flex-col md:flex-row w-full min-h-screen md:h-screen overflow-hidden bg-[#0C131B] pt-24 md:pt-0">
 
     <!-- COLONNE GAUCHE (TEXTE) -->
-    <div class="hero-col left-col w-full md:w-1/2 h-full min-h-[50vh] md:min-h-screen relative flex items-center justify-start px-6 md:pl-[10%] bg-cover bg-center z-[2] py-12 md:py-0">
+    <div
+      class="hero-col left-col w-full md:w-1/2 h-full min-h-[50vh] md:min-h-screen relative flex items-center justify-start px-6 md:pl-[10%] bg-cover bg-center z-[2] py-12 md:py-0">
       <div class="content max-w-[500px] text-white">
         <p class="subtitle text-xl md:text-3xl mb-2 text-white/90">Bonjour, je suis</p>
         <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 leading-tight">

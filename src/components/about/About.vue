@@ -12,16 +12,16 @@ import AboutSprite from './AboutSprite.vue';
         src="@/assets/icons/trait.png" alt="">
 
       <h2 class="text-2xl sm:text-3xl md:text-4xl uppercase tracking-wider text-[#D7F3F5] font-semibold" id="about">
-        A propos 
+        A propos
       </h2>
-      
-      
+
+
       <!-- Trait droit (Masqué sur très petits écrans) -->
       <img src="@/assets/icons/trait1.png" alt=""
-      class="hidden sm:inline-block h-auto max-w-[60px] md:max-w-[100px] object-contain select-none">
+        class="hidden sm:inline-block h-auto max-w-[60px] md:max-w-[100px] object-contain select-none">
     </div>
 
-    <!-- ARBRE des competence  -->
+    <!-- A Propos  -->
     <div class="aboutSprite flex justify-center items-center gap-6 mt-8 w-full" id="skills">
       <AboutSprite />
     </div>

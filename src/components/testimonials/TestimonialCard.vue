@@ -1,6 +1,7 @@
 <template>
   <!-- Conteneur grille fluide et centré -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6 lg:gap-8 w-full max-w-7xl mx-auto pt-10 justify-items-center">
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6 lg:gap-8 w-full max-w-7xl mx-auto pt-10 justify-items-center">
 
     <!-- CARTE 1 -->
     <div class="card-temoin relative w-full max-w-[360px] bg-[#1E293B] rounded-2xl p-6 sm:p-7 pt-12 sm:pt-14 border border-[#8F98BE] shadow-xl text-center transition-transform duration-300 hover:-translate-y-1 flex flex-col justify-between">
@@ -25,7 +26,8 @@
     </div>
 
     <!-- CARTE 2 -->
-    <div class="card-temoin relative w-full max-w-[360px] bg-[#1E293B] rounded-2xl p-6 sm:p-7 pt-12 sm:pt-14 border border-[#8F98BE] shadow-xl text-center transition-transform duration-300 hover:-translate-y-1 flex flex-col justify-between">
+    <div
+      class="card-temoin relative w-full max-w-[360px] bg-[#1E293B] rounded-2xl p-6 sm:p-7 pt-12 sm:pt-14 border border-[#8F98BE] shadow-xl text-center transition-transform duration-300 hover:-translate-y-1 flex flex-col justify-between">
       <!-- AVATAR EN CHEVAUCHEMENT EN HAUT -->
       <div class="absolute -top-9 left-1/2 -translate-x-1/2">
         <img src="@/assets/img/portrait2.png" alt="Photo de profil du témoin"
@@ -47,7 +49,8 @@
     </div>
 
     <!-- CARTE 3 -->
-    <div class="card-temoin relative w-full max-w-[360px] bg-[#1E293B] rounded-2xl p-6 sm:p-7 pt-12 sm:pt-14 border border-[#8F98BE] shadow-xl text-center transition-transform duration-300 hover:-translate-y-1 flex flex-col justify-between">
+    <div
+      class="card-temoin relative w-full max-w-[360px] bg-[#1E293B] rounded-2xl p-6 sm:p-7 pt-12 sm:pt-14 border border-[#8F98BE] shadow-xl text-center transition-transform duration-300 hover:-translate-y-1 flex flex-col justify-between">
       <!-- AVATAR EN CHEVAUCHEMENT EN HAUT -->
       <div class="absolute -top-9 left-1/2 -translate-x-1/2">
         <img src="@/assets/img/portrait3.png" alt="Photo de profil du témoin"
