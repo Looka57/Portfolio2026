@@ -12,10 +12,10 @@ let ctx = null
 onMounted(() => {
   const frames = [
     "0px 0px",
-    "-177px 0px",
-    "-354px 0px",
-    "-531px 0px",
-    "-708px 0px"
+    "-170px 0px",
+    "-340px 0px",
+    "-510px 0px",
+    "-680px 0px"
   ]
 
   if (spriteRef.value) {
@@ -143,7 +143,7 @@ onUnmounted(() => {
 .character-sprite {
   width: 177px;
   height: 210px;
-  background-image: url("@/assets/sprite/spritesheet.png");
+  background-image: url("@/assets/sprite/spritesSheets.png");
   background-repeat: no-repeat;
   background-position: 0px 0px;
   background-size: 884px 210px;

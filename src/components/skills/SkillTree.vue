@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, computed, ref } from 'vue'
+import { reactive, computed, ref, onMounted, onUnmounted } from 'vue'
 
 /* ==========================================================
    1. CONFIGURATION DU CENTRE DE L'ARBRE
@@ -25,6 +25,7 @@ const tree = reactive([
       {
         label: 'JavaScript', icon: 'JS', desc: 'Logique ES6+, Async/Await, manipulation du DOM.', level: 3, expanded: false,
         children: [
+          { label: 'TypeScript', icon: 'TS', desc: 'Sur ensemble typé de JS, autocomplétion et refactoring sécurisé.', locked: true },
           { label: 'Vue.js', icon: 'V', desc: 'Framework principal, Composition API, Pinia, Vue Router.', level: 3, projects: ['Portfolio2026', 'ASPPorcelette'] },
           { label: 'Nuxt.js', icon: 'N', desc: 'SSR / SSG pour Vue, optimisation SEO.', level: 2, locked: true },
         ]
@@ -47,7 +48,12 @@ const tree = reactive([
         label: 'ASP.NET', icon: 'AS', desc: 'Framework applicatif Web API & Microservices.', level: 4, expanded: false,
         children: [
           { label: 'Entity Framework', icon: 'EF', desc: 'ORM, migrations, requêtes LINQ optimisées.', level: 4, projects: ['AdminMns', 'ASPPorcelette'] },
-          { label: 'API REST', icon: '{}', desc: "Conception, documentation Swagger et sécurité JWT.", level: 5, projects: ['AdminMns', 'ASPPorcelette'] },
+          {
+            label: 'API REST', icon: '{}', desc: 'Conception d’interfaces applicatives et sécurité JWT.', level: 5, expanded: false, projects: ['AdminMns', 'ASPPorcelette'],
+            children: [
+              { label: 'Swagger / API', icon: '📄', desc: 'Documentation interactive et test des endpoints d\'API.', level: 3, projects: ['AdminMns', 'ASPPorcelette'] }
+            ]
+          }
         ]
       },
       { label: 'C#', icon: 'C#', desc: 'Langage POO principal pour la logique métier backend.', level: 4, projects: ['AdminMns', 'ASPPorcelette', 'Portfolio2026'] },
@@ -64,14 +70,14 @@ const tree = reactive([
     key: 'tools', color: '#ffb547', angle: 54, label: 'Outils', icon: '⚙',
     desc: 'Productivité, déploiement et contrôle de version.', level: 3, expanded: false,
     children: [
-      { label: 'GitHub', icon: 'Git', desc: 'Versioning, gestion de branches, Pull Requests.', level: 3 },
       {
-        label: 'VS Code', icon: 'VS', desc: 'Environnement de développement principal.', level: 5,
+        label: 'IDE / Éditeurs', icon: 'IDE', desc: 'Environnements de développement et éditeurs de code.', level: 4,
         children: [
-          { label: 'Visual Studio Code', icon: 'VS', desc: 'IDE principal pour le développement.', level: 4 },
+          { label: 'VS Code', icon: 'VSC', desc: 'Éditeur principal pour le développement Frontend (Vue.js, Web).', level: 4 },
+          { label: 'Visual Studio', icon: 'VS', desc: 'IDE principal pour le développement Backend (C#, .NET).', level: 4 },
         ]
       },
-      { label: 'Figma', icon: 'Fg', desc: 'Versioning, gestion de branches, Pull Requests.', level: 4 },
+      { label: 'GitHub', icon: 'Git', desc: 'Versioning, gestion de branches, Pull Requests.', level: 3 },
       {
         label: 'Docker', icon: '🐳', desc: 'Conteneurisation des applications et environnements.', level: 2, expanded: false,
         children: [
@@ -128,14 +134,17 @@ function polar(angleDeg, r) {
 function getNodeRadius(depth) {
   if (depth === 0) return 220
   if (depth === 1) return 325
-  return 425
+  if (depth === 2) return 410
+  return 485
 }
 
 /* ==========================================================
    6. ÉCARTEMENT D'ANGLE DES ENFANTS
    ========================================================== */
 function getSpreadAngle(depth) {
-  return depth === 0 ? 36 : 24
+  if (depth === 0) return 36
+  if (depth === 1) return 24
+  return 18
 }
 
 /* ==========================================================
@@ -213,7 +222,7 @@ const edges = computed(() => {
 })
 
 /* ==========================================================
-   9. SIDEBAR & INTERACTION
+   9. SIDEBAR & INTERACTION (DESKTOP)
    ========================================================== */
 const activeNode = ref(null)
 
@@ -236,7 +245,10 @@ function setAllExpanded(items, state) {
 }
 
 function expandAll() { setAllExpanded(tree, true) }
-function collapseAllTree() { setAllExpanded(tree, false) }
+function collapseAllTree() {
+  setAllExpanded(tree, false)
+  activeNode.value = null
+}
 
 function collapseAll(children) {
   children.forEach((c) => {
@@ -249,21 +261,38 @@ function toggle(node) {
   const refNode = node.ref
   if (refNode.locked) return
 
-  if (refNode.children && refNode.children.length) {
-    refNode.expanded = !refNode.expanded
-    if (!refNode.expanded) collapseAll(refNode.children)
-  }
-
-  // SI LE NŒUD ACTIF EST DÉJÀ CELUI-CI -> ON FERME LA SIDEBAR !
   if (activeNode.value && activeNode.value.keyId === node.keyId) {
     activeNode.value = null
   } else {
     selectNode(node)
   }
+
+  if (refNode.children && refNode.children.length) {
+    refNode.expanded = !refNode.expanded
+    if (!refNode.expanded) {
+      collapseAll(refNode.children)
+
+      if (activeNode.value && activeNode.value.keyId.startsWith(node.keyId)) {
+        activeNode.value = null
+      }
+    }
+  }
 }
 
 /* ==========================================================
-   10. TOOLTIP
+   9-BIS. TOGGLE ACCORDÉON (MOBILE)
+   Simple : pas de coordonnées à calculer, pas de sidebar,
+   juste on ouvre/ferme la liste d'enfants du nœud cliqué.
+   ========================================================== */
+function toggleMobile(node) {
+  if (node.locked) return
+  if (node.children && node.children.length) {
+    node.expanded = !node.expanded
+  }
+}
+
+/* ==========================================================
+   10. TOOLTIP (DESKTOP)
    ========================================================== */
 const tip = reactive({ show: false, x: 0, y: 0, label: '', desc: '' })
 
@@ -276,168 +305,264 @@ function showTip(e, node) {
 }
 
 function hideTip() { tip.show = false }
+
+/* ==========================================================
+   11. FERMETURE SI CLIC À L'EXTÉRIEUR (GLOBAL CLICK)
+   ========================================================== */
+function handleGlobalClick(e) {
+  if (!activeNode.value) return
+
+  const isInsideSvg = e.target.closest('.skill-tree-svg')
+  const isInsideSidebar = e.target.closest('.skill-sidebar')
+  const isInsideControls = e.target.closest('.tree-controls')
+
+  if (!isInsideSvg && !isInsideSidebar && !isInsideControls) {
+    activeNode.value = null
+  }
+}
+
+/* ==========================================================
+   12. DÉTECTION MOBILE (RESPONSIVE)
+   En dessous de 768px, on bascule sur la vue accordéon
+   au lieu de forcer le SVG radial dans un petit écran.
+   ========================================================== */
+const isMobile = ref(false)
+function checkMobile() { isMobile.value = window.innerWidth < 768 }
+
+onMounted(() => {
+  checkMobile()
+  window.addEventListener('resize', checkMobile)
+  window.addEventListener('click', handleGlobalClick)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', checkMobile)
+  window.removeEventListener('click', handleGlobalClick)
+})
 </script>
 
 <template>
-  <div class="skill-tree-wrap ">
+  <div class="skill-tree-wrap">
 
-    <!-- Boutons de commande rapide -->
-    <div class="tree-controls">
+    <!-- Boutons de commande rapide (desktop uniquement, inutiles sur l'accordéon mobile) -->
+    <div v-if="!isMobile" class="tree-controls">
       <button @click="expandAll" class="ctrl-btn">⚡ Tout déplier</button>
       <button @click="collapseAllTree" class="ctrl-btn">↺ Replier</button>
     </div>
 
-    <!-- Rendu graphique SVG principal -->
-    <svg viewBox="0 0 1300 820" class="skill-tree-svg">
-      <defs>
-        <linearGradient id="coreGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#3ea6ff" />
-          <stop offset="50%" stop-color="#b073ff" />
-          <stop offset="100%" stop-color="#ff5d8f" />
-        </linearGradient>
-      </defs>
+    <!-- ============ VUE DESKTOP : ARBRE RADIAL SVG (inchangé) ============ -->
+    <template v-if="!isMobile">
+      <svg viewBox="0 0 1300 820" class="skill-tree-svg">
+        <defs>
+          <linearGradient id="coreGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#3ea6ff" />
+            <stop offset="50%" stop-color="#b073ff" />
+            <stop offset="100%" stop-color="#ff5d8f" />
+          </linearGradient>
+        </defs>
 
-      <!-- COUCHE 0 : OPTION 3 - CIRCUITS ÉLECTRONIQUES (PCB TECH) -->
-      <g class="pcb-circuit-layer">
-        <!-- Coin Haut-Gauche (Bleu) -->
-        <g stroke="#3ea6ff" opacity="0.35" fill="none" stroke-width="1.5">
-          <path d="M 40,40 L 180,40 L 260,120 L 380,120" />
-          <path d="M 40,60 L 160,60 L 230,130 L 320,130" />
-          <circle cx="380" cy="120" r="4" fill="#3ea6ff" />
-          <circle cx="320" cy="130" r="3.5" fill="#3ea6ff" />
-          <rect x="35" y="35" width="10" height="10" fill="#3ea6ff" />
+        <g class="pcb-circuit-layer">
+          <g stroke="#3ea6ff" opacity="0.35" fill="none" stroke-width="1.5">
+            <path d="M 40,40 L 180,40 L 260,120 L 380,120" />
+            <path d="M 40,60 L 160,60 L 230,130 L 320,130" />
+            <circle cx="380" cy="120" r="4" fill="#3ea6ff" />
+            <circle cx="320" cy="130" r="3.5" fill="#3ea6ff" />
+            <rect x="35" y="35" width="10" height="10" fill="#3ea6ff" />
+          </g>
+
+          <g stroke="#4fd67a" opacity="0.35" fill="none" stroke-width="1.5">
+            <path d="M 1260,40 L 1120,40 L 1040,120 L 920,120" />
+            <path d="M 1260,65 L 1140,65 L 1070,135 L 980,135" />
+            <circle cx="920" cy="120" r="4" fill="#4fd67a" />
+            <circle cx="980" cy="135" r="3.5" fill="#4fd67a" />
+            <rect x="1255" y="35" width="10" height="10" fill="#4fd67a" />
+          </g>
+
+          <g stroke="#ffb547" opacity="0.35" fill="none" stroke-width="1.5">
+            <path d="M 1260,780 L 1100,780 L 1020,700 L 900,700" />
+            <path d="M 1260,755 L 1120,755 L 1050,685 L 960,685" />
+            <circle cx="900" cy="700" r="4" fill="#ffb547" />
+            <circle cx="960" cy="685" r="3.5" fill="#ffb547" />
+            <rect x="1255" y="775" width="10" height="10" fill="#ffb547" />
+          </g>
+
+          <g stroke="#ff5d8f" opacity="0.35" fill="none" stroke-width="1.5">
+            <path d="M 40,780 L 200,780 L 280,700 L 400,700" />
+            <path d="M 40,755 L 180,755 L 250,685 L 340,685" />
+            <circle cx="400" cy="700" r="4" fill="#ff5d8f" />
+            <circle cx="340" cy="685" r="3.5" fill="#ff5d8f" />
+            <rect x="35" y="775" width="10" height="10" fill="#ff5d8f" />
+          </g>
+
+          <g stroke="#b073ff" opacity="0.3" fill="none" stroke-width="1.5">
+            <path d="M 500,410 L 550,410 M 750,410 L 800,410" />
+            <circle cx="500" cy="410" r="3" fill="#b073ff" />
+            <circle cx="800" cy="410" r="3" fill="#b073ff" />
+          </g>
+
+          <circle cx="260" cy="120" r="3.5" fill="#3ea6ff" class="pcb-signal signal-1" />
+          <circle cx="180" cy="40" r="3.5" fill="#3ea6ff" class="pcb-signal signal-2" />
+          <circle cx="1040" cy="120" r="3.5" fill="#4fd67a" class="pcb-signal signal-3" />
+          <circle cx="1120" cy="40" r="3.5" fill="#4fd67a" class="pcb-signal signal-4" />
+          <circle cx="1020" cy="700" r="3.5" fill="#ffb547" class="pcb-signal signal-5" />
+          <circle cx="1100" cy="780" r="3.5" fill="#ffb547" class="pcb-signal signal-6" />
+          <circle cx="280" cy="700" r="3.5" fill="#ff5d8f" class="pcb-signal signal-7" />
+          <circle cx="200" cy="780" r="3.5" fill="#ff5d8f" class="pcb-signal signal-8" />
         </g>
 
-        <!-- Coin Haut-Droit (Vert) -->
-        <g stroke="#4fd67a" opacity="0.35" fill="none" stroke-width="1.5">
-          <path d="M 1260,40 L 1120,40 L 1040,120 L 920,120" />
-          <path d="M 1260,65 L 1140,65 L 1070,135 L 980,135" />
-          <circle cx="920" cy="120" r="4" fill="#4fd67a" />
-          <circle cx="980" cy="135" r="3.5" fill="#4fd67a" />
-          <rect x="1255" y="35" width="10" height="10" fill="#4fd67a" />
+        <g class="edges-layer">
+          <path v-for="edge in edges" :key="edge.id" class="link" :class="{ 'branch-pop': edge.isNew }"
+            :stroke="edge.color" :opacity="edge.locked ? 0.25 : 0.8"
+            :d="`M${edge.x1},${edge.y1} L${edge.x2},${edge.y2}`" />
         </g>
 
-        <!-- Coin Bas-Droit (Orange) -->
-        <g stroke="#ffb547" opacity="0.35" fill="none" stroke-width="1.5">
-          <path d="M 1260,780 L 1100,780 L 1020,700 L 900,700" />
-          <path d="M 1260,755 L 1120,755 L 1050,685 L 960,685" />
-          <circle cx="900" cy="700" r="4" fill="#ffb547" />
-          <circle cx="960" cy="685" r="3.5" fill="#ffb547" />
-          <rect x="1255" y="775" width="10" height="10" fill="#ffb547" />
+        <g class="core-group">
+          <circle class="core-bg" :cx="cx" :cy="cy" r="85" />
+          <circle class="core-ring" :cx="cx" :cy="cy" r="98" stroke="url(#coreGrad)" stroke-dasharray="415 200"
+            :transform="`rotate(-90 ${cx} ${cy})`" />
+
+          <image href="@/assets/sprite/marche.PNG" :x="cx - 35" :y="cy - 65" width="70" height="70"
+            class="core-avatar-img" />
+
+          <text class="core-label" :x="cx" :y="cy + 22">COMPÉTENCES</text>
+          <text class="core-count" :x="cx" :y="cy + 45">18 / 24</text>
         </g>
 
-        <!-- Coin Bas-Gauche (Rose) -->
-        <g stroke="#ff5d8f" opacity="0.35" fill="none" stroke-width="1.5">
-          <path d="M 40,780 L 200,780 L 280,700 L 400,700" />
-          <path d="M 40,755 L 180,755 L 250,685 L 340,685" />
-          <circle cx="400" cy="700" r="4" fill="#ff5d8f" />
-          <circle cx="340" cy="685" r="3.5" fill="#ff5d8f" />
-          <rect x="35" y="775" width="10" height="10" fill="#ff5d8f" />
+        <g class="nodes-layer">
+          <g v-for="node in nodes" :key="node.keyId" class="node-group" :class="{
+            locked: node.locked,
+            leaf: !node.hasKids,
+            pulsing: node.hasKids && !node.expanded && !node.locked,
+            'branch-pop': node.isNew
+          }" :style="{ '--node-color': node.color }" @click.stop="toggle(node)" @mousemove="showTip($event, node)"
+            @mouseleave="hideTip">
+
+            <polygon v-if="node.depth === 0" class="node-shape-diamond" :points="getDiamondPoints(node.x, node.y, 24)"
+              fill="#0b0f1a" :stroke="node.color" stroke-width="2" />
+
+            <circle v-else class="node-shape-circle" :cx="node.x" :cy="node.y" r="22" fill="#0b0f1a" :stroke="node.color"
+              stroke-width="2" />
+
+            <text class="icon" :x="node.x" :y="node.y">{{ node.locked ? '🔒' : node.icon }}</text>
+            <text class="label" :x="node.x" :y="node.y + (node.depth === 0 ? 38 : 34)">{{ node.label }}</text>
+            <text v-if="node.hasKids && !node.locked" class="expand-hint" :x="node.x"
+              :y="node.y + (node.depth === 0 ? 52 : 48)">{{ node.expanded ? '▲' : '▼' }}</text>
+          </g>
         </g>
+      </svg>
 
-        <!-- Pistes centrales reliant l'arbre (Violet) -->
-        <g stroke="#b073ff" opacity="0.3" fill="none" stroke-width="1.5">
-          <path d="M 500,410 L 550,410 M 750,410 L 800,410" />
-          <circle cx="500" cy="410" r="3" fill="#b073ff" />
-          <circle cx="800" cy="410" r="3" fill="#b073ff" />
-        </g>
+      <div class="tooltip" :class="{ show: tip.show }" :style="{ left: tip.x + 'px', top: tip.y + 'px' }">
+        <div class="t-label">{{ tip.label }}</div>
+        <div class="t-desc">{{ tip.desc }}</div>
+      </div>
 
-        <!-- SIGNAUX LUMINEUX VISIBLES (Fixes en position, effet néon/pulsation fluide) -->
-        <!-- SIGNAUX LUMINEUX VISIBLES (2 par couleur = 8 au total) -->
-        <!-- Bleu (Haut-Gauche) -->
-        <circle cx="260" cy="120" r="3.5" fill="#3ea6ff" class="pcb-signal signal-1" />
-        <circle cx="180" cy="40" r="3.5" fill="#3ea6ff" class="pcb-signal signal-2" />
+      <transition name="slide-panel">
+        <div v-if="activeNode" class="skill-sidebar">
+          <button class="close-btn" @click="closeSidebar">✕</button>
 
-        <!-- Vert (Haut-Droit) -->
-        <circle cx="1040" cy="120" r="3.5" fill="#4fd67a" class="pcb-signal signal-3" />
-        <circle cx="1120" cy="40" r="3.5" fill="#4fd67a" class="pcb-signal signal-4" />
+          <div class="sidebar-header" :style="{ color: activeNode.color }">
+            <span class="sidebar-icon">{{ activeNode.icon }}</span>
+            <h3>{{ activeNode.label }}</h3>
+          </div>
 
-        <!-- Jaune / Orange (Bas-Droit) -->
-        <circle cx="1020" cy="700" r="3.5" fill="#ffb547" class="pcb-signal signal-5" />
-        <circle cx="1100" cy="780" r="3.5" fill="#ffb547" class="pcb-signal signal-6" />
+          <p class="sidebar-desc">{{ activeNode.desc }}</p>
 
-        <!-- Rose / Rouge (Bas-Gauche) -->
-        <circle cx="280" cy="700" r="3.5" fill="#ff5d8f" class="pcb-signal signal-7" />
-        <circle cx="200" cy="780" r="3.5" fill="#ff5d8f" class="pcb-signal signal-8" />
-      </g>
+          <div class="mastery-box">
+            <span class="m-title">Niveau de maîtrise</span>
+            <div class="stars">
+              <span v-for="i in 5" :key="i" class="star" :class="{ filled: i <= activeNode.level }">★</span>
+            </div>
+          </div>
 
-      <!-- Couche 1 : Rendu des branches / liaisons -->
-      <g class="edges-layer">
-        <path v-for="edge in edges" :key="edge.id" class="link" :class="{ 'branch-pop': edge.isNew }"
-          :stroke="edge.color" :opacity="edge.locked ? 0.25 : 0.8"
-          :d="`M${edge.x1},${edge.y1} L${edge.x2},${edge.y2}`" />
-      </g>
-
-      <!-- Couche 2 : Cœur central de l'arbre -->
-      <g class="core-group">
-        <circle class="core-bg" :cx="cx" :cy="cy" r="85" />
-        <circle class="core-ring" :cx="cx" :cy="cy" r="98" stroke="url(#coreGrad)" stroke-dasharray="415 200"
-          :transform="`rotate(-90 ${cx} ${cy})`" />
-
-        <image href="@/assets/sprite/marche.PNG" :x="cx - 35" :y="cy - 65" width="70" height="70"
-          class="core-avatar-img" />
-
-        <text class="core-label" :x="cx" :y="cy + 22">COMPÉTENCES</text>
-        <text class="core-count" :x="cx" :y="cy + 45">18 / 24</text>
-      </g>
-
-      <!-- Couche 3 : Rendu des nœuds -->
-      <g class="nodes-layer">
-        <g v-for="node in nodes" :key="node.keyId" class="node-group" :class="{
-          locked: node.locked,
-          leaf: !node.hasKids,
-          pulsing: node.hasKids && !node.expanded && !node.locked,
-          'branch-pop': node.isNew
-        }" :style="{ '--node-color': node.color }" @click="toggle(node)" @mousemove="showTip($event, node)"
-          @mouseleave="hideTip">
-
-          <polygon v-if="node.depth === 0" class="node-shape-diamond" :points="getDiamondPoints(node.x, node.y, 24)"
-            fill="#0b0f1a" :stroke="node.color" stroke-width="2" />
-
-          <circle v-else class="node-shape-circle" :cx="node.x" :cy="node.y" r="22" fill="#0b0f1a" :stroke="node.color"
-            stroke-width="2" />
-
-          <text class="icon" :x="node.x" :y="node.y">{{ node.locked ? '🔒' : node.icon }}</text>
-          <text class="label" :x="node.x" :y="node.y + (node.depth === 0 ? 38 : 34)">{{ node.label }}</text>
-          <text v-if="node.hasKids && !node.locked" class="expand-hint" :x="node.x"
-            :y="node.y + (node.depth === 0 ? 52 : 48)">{{ node.expanded ? '▲' : '▼' }}</text>
-        </g>
-      </g>
-    </svg>
-
-    <!-- Tooltip -->
-    <div class="tooltip" :class="{ show: tip.show }" :style="{ left: tip.x + 'px', top: tip.y + 'px' }">
-      <div class="t-label">{{ tip.label }}</div>
-      <div class="t-desc">{{ tip.desc }}</div>
-    </div>
-
-    <!-- Sidebar -->
-    <transition name="slide-panel">
-      <div v-if="activeNode" class="skill-sidebar">
-        <button class="close-btn" @click="closeSidebar">✕</button>
-
-        <div class="sidebar-header" :style="{ color: activeNode.color }">
-          <span class="sidebar-icon">{{ activeNode.icon }}</span>
-          <h3>{{ activeNode.label }}</h3>
-        </div>
-
-        <p class="sidebar-desc">{{ activeNode.desc }}</p>
-
-        <div class="mastery-box">
-          <span class="m-title">Niveau de maîtrise</span>
-          <div class="stars">
-            <span v-for="i in 5" :key="i" class="star" :class="{ filled: i <= activeNode.level }">★</span>
+          <div v-if="activeNode.ref.projects" class="projects-box">
+            <h4>Projets associés :</h4>
+            <ul>
+              <li v-for="(p, idx) in activeNode.ref.projects" :key="idx">🚀 {{ p }}</li>
+            </ul>
           </div>
         </div>
+      </transition>
+    </template>
 
-        <div v-if="activeNode.ref.projects" class="projects-box">
-          <h4>Projets associés :</h4>
-          <ul>
-            <li v-for="(p, idx) in activeNode.ref.projects" :key="idx">🚀 {{ p }}</li>
-          </ul>
-        </div>
+    <!-- ============ VUE MOBILE : ACCORDÉON (< 768px) ============ -->
+    <div v-else class="skill-accordion">
+      <div v-for="branch in tree" :key="branch.key" class="branch-card" :style="{ '--branch-color': branch.color }">
+
+        <button class="branch-header" @click="toggleMobile(branch)">
+          <span class="branch-icon">{{ branch.icon }}</span>
+          <span class="branch-text">
+            <span class="branch-label">{{ branch.label }}</span>
+            <span class="branch-desc">{{ branch.desc }}</span>
+          </span>
+          <span class="chevron" :class="{ open: branch.expanded }">▾</span>
+        </button>
+
+        <ul v-if="branch.expanded" class="node-list lvl-1">
+          <li v-for="(child, i) in branch.children" :key="i" class="skill-node" :class="{ locked: child.locked }">
+
+            <button class="node-row" :disabled="child.locked" @click="toggleMobile(child)"
+              :style="{ '--node-color': branch.color }">
+              <span class="node-icon">{{ child.locked ? '🔒' : child.icon }}</span>
+              <span class="node-main">
+                <span class="node-label">{{ child.label }}</span>
+                <span v-if="child.level && !child.locked" class="node-stars">
+                  <span v-for="s in 5" :key="s" class="star" :class="{ filled: s <= child.level }">★</span>
+                </span>
+              </span>
+              <span v-if="child.children && child.children.length && !child.locked" class="chevron"
+                :class="{ open: child.expanded }">▾</span>
+            </button>
+
+            <p v-if="child.desc && !child.locked" class="node-desc">{{ child.desc }}</p>
+            <ul v-if="child.projects && !child.locked" class="node-projects">
+              <li v-for="(p, idx) in child.projects" :key="idx">🚀 {{ p }}</li>
+            </ul>
+
+            <ul v-if="child.children && child.expanded && !child.locked" class="node-list lvl-2">
+              <li v-for="(grandchild, j) in child.children" :key="j" class="skill-node"
+                :class="{ locked: grandchild.locked }">
+
+                <button class="node-row" :disabled="grandchild.locked" @click="toggleMobile(grandchild)"
+                  :style="{ '--node-color': branch.color }">
+                  <span class="node-icon">{{ grandchild.locked ? '🔒' : grandchild.icon }}</span>
+                  <span class="node-main">
+                    <span class="node-label">{{ grandchild.label }}</span>
+                    <span v-if="grandchild.level && !grandchild.locked" class="node-stars">
+                      <span v-for="s in 5" :key="s" class="star" :class="{ filled: s <= grandchild.level }">★</span>
+                    </span>
+                  </span>
+                  <span v-if="grandchild.children && grandchild.children.length && !grandchild.locked" class="chevron"
+                    :class="{ open: grandchild.expanded }">▾</span>
+                </button>
+
+                <p v-if="grandchild.desc && !grandchild.locked" class="node-desc">{{ grandchild.desc }}</p>
+                <ul v-if="grandchild.projects && !grandchild.locked" class="node-projects">
+                  <li v-for="(p, idx) in grandchild.projects" :key="idx">🚀 {{ p }}</li>
+                </ul>
+
+                <ul v-if="grandchild.children && grandchild.expanded && !grandchild.locked" class="node-list lvl-3">
+                  <li v-for="(leaf, k) in grandchild.children" :key="k" class="skill-node">
+                    <button class="node-row" @click="toggleMobile(leaf)" :style="{ '--node-color': branch.color }">
+                      <span class="node-icon">{{ leaf.icon }}</span>
+                      <span class="node-main">
+                        <span class="node-label">{{ leaf.label }}</span>
+                        <span v-if="leaf.level" class="node-stars">
+                          <span v-for="s in 5" :key="s" class="star" :class="{ filled: s <= leaf.level }">★</span>
+                        </span>
+                      </span>
+                    </button>
+                    <p v-if="leaf.desc" class="node-desc">{{ leaf.desc }}</p>
+                    <ul v-if="leaf.projects" class="node-projects">
+                      <li v-for="(p, idx) in leaf.projects" :key="idx">🚀 {{ p }}</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
-    </transition>
+    </div>
 
   </div>
 </template>
@@ -453,73 +578,27 @@ function hideTip() { tip.show = false }
 }
 
 /* ==========================================================
-   ANIMATIONS DES CIRCUITS PCB (OPTION 3)
-   ========================================================== */
-/* ==========================================================
-   ANIMATIONS DES CIRCUITS PCB (SANS DÉBORDEMENT)
+   ANIMATIONS DES CIRCUITS PCB
    ========================================================== */
 .pcb-signal {
-  /* Définit le point d'origine de transformation sur le centre de chaque cercle */
   transform-origin: center;
   transform-box: fill-box;
   animation: pcbPulse 3s infinite ease-in-out;
 }
 
-/* Décalages temporels pour chaque signal */
-
-.signal-1 {
-  animation-delay: 0s;
-}
-
-.signal-2 {
-  animation-delay: 0.8s;
-}
-
-.signal-3 {
-  animation-delay: 0.3s;
-}
-
-.signal-4 {
-  animation-delay: 1.1s;
-}
-
-.signal-5 {
-  animation-delay: 0.6s;
-}
-
-.signal-6 {
-  animation-delay: 1.4s;
-}
-
-.signal-7 {
-  animation-delay: 0.9s;
-}
-
-.signal-8 {
-  animation-delay: 1.7s;
-}
+.signal-1 { animation-delay: 0s; }
+.signal-2 { animation-delay: 0.8s; }
+.signal-3 { animation-delay: 0.3s; }
+.signal-4 { animation-delay: 1.1s; }
+.signal-5 { animation-delay: 0.6s; }
+.signal-6 { animation-delay: 1.4s; }
+.signal-7 { animation-delay: 0.9s; }
+.signal-8 { animation-delay: 1.7s; }
 
 @keyframes pcbPulse {
-  0% {
-    opacity: 0.2;
-    transform: scale(0.7);
-    /* Réduction contenue sur le centre du cercle */
-    filter: drop-shadow(0 0 0px transparent);
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1.3);
-    /* Léger grossissement local sans sortir */
-    filter: drop-shadow(0 0 6px currentColor);
-    /* Effet néon très propre */
-  }
-
-  100% {
-    opacity: 0.2;
-    transform: scale(0.7);
-    filter: drop-shadow(0 0 0px transparent);
-  }
+  0% { opacity: 0.2; transform: scale(0.7); filter: drop-shadow(0 0 0px transparent); }
+  50% { opacity: 1; transform: scale(1.3); filter: drop-shadow(0 0 6px currentColor); }
+  100% { opacity: 0.2; transform: scale(0.7); filter: drop-shadow(0 0 0px transparent); }
 }
 
 /* Controls */
@@ -570,32 +649,14 @@ function hideTip() { tip.show = false }
 }
 
 @keyframes popIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.85);
-    transform-origin: center;
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1);
-    transform-origin: center;
-  }
+  0% { opacity: 0; transform: scale(0.85); transform-origin: center; }
+  100% { opacity: 1; transform: scale(1); transform-origin: center; }
 }
 
 /* Nodes */
-.node-group {
-  cursor: pointer;
-}
-
-.node-group.locked {
-  cursor: not-allowed;
-  opacity: .4;
-}
-
-.node-group.leaf {
-  cursor: pointer;
-}
+.node-group { cursor: pointer; }
+.node-group.locked { cursor: not-allowed; opacity: .4; }
+.node-group.leaf { cursor: pointer; }
 
 .node-shape-diamond,
 .node-shape-circle {
@@ -614,17 +675,8 @@ function hideTip() { tip.show = false }
 }
 
 @keyframes subtlePulse {
-
-  0%,
-  100% {
-    stroke-width: 2px;
-    filter: drop-shadow(0 0 2px transparent);
-  }
-
-  50% {
-    stroke-width: 3px;
-    filter: drop-shadow(0 0 6px var(--node-color));
-  }
+  0%, 100% { stroke-width: 2px; filter: drop-shadow(0 0 2px transparent); }
+  50% { stroke-width: 3px; filter: drop-shadow(0 0 6px var(--node-color)); }
 }
 
 .icon {
@@ -652,11 +704,7 @@ function hideTip() { tip.show = false }
 }
 
 /* Core Ring */
-.core-bg {
-  fill: var(--panel);
-  stroke: #1c2436;
-  stroke-width: 2.5;
-}
+.core-bg { fill: var(--panel); stroke: #1c2436; stroke-width: 2.5; }
 
 .core-ring {
   fill: none;
@@ -666,13 +714,8 @@ function hideTip() { tip.show = false }
 }
 
 @keyframes spinRing {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .core-label {
@@ -690,7 +733,7 @@ function hideTip() { tip.show = false }
   font-weight: 700;
 }
 
-/* Tooltip & Sidebar */
+/* Tooltip & Sidebar (desktop) */
 .tooltip {
   position: fixed;
   z-index: 60;
@@ -707,19 +750,10 @@ function hideTip() { tip.show = false }
   transition: opacity .15s ease, transform .15s ease;
 }
 
-.tooltip.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+.tooltip.show { opacity: 1; transform: translateY(0); }
 
-.t-label {
-  font-weight: 700;
-  margin-bottom: 2px;
-}
-
-.t-desc {
-  color: var(--muted);
-}
+.t-label { font-weight: 700; margin-bottom: 2px; }
+.t-desc { color: var(--muted); }
 
 .skill-sidebar {
   position: absolute;
@@ -747,9 +781,7 @@ function hideTip() { tip.show = false }
   cursor: pointer;
 }
 
-.close-btn:hover {
-  color: #fff;
-}
+.close-btn:hover { color: #fff; }
 
 .sidebar-header {
   display: flex;
@@ -758,15 +790,8 @@ function hideTip() { tip.show = false }
   margin-bottom: 12px;
 }
 
-.sidebar-icon {
-  font-size: 1.4rem;
-  font-weight: bold;
-}
-
-.sidebar-header h3 {
-  margin: 0;
-  font-size: 1.1rem;
-}
+.sidebar-icon { font-size: 1.4rem; font-weight: bold; }
+.sidebar-header h3 { margin: 0; font-size: 1.1rem; }
 
 .sidebar-desc {
   font-size: 0.85rem;
@@ -789,25 +814,11 @@ function hideTip() { tip.show = false }
   margin-bottom: 4px;
 }
 
-.stars {
-  display: flex;
-  gap: 4px;
-}
+.stars { display: flex; gap: 4px; }
+.star { color: #2c3550; font-size: 1.1rem; }
+.star.filled { color: #ffb547; }
 
-.star {
-  color: #2c3550;
-  font-size: 1.1rem;
-}
-
-.star.filled {
-  color: #ffb547;
-}
-
-.projects-box h4 {
-  font-size: 0.8rem;
-  margin: 0 0 8px 0;
-  color: var(--text);
-}
+.projects-box h4 { font-size: 0.8rem; margin: 0 0 8px 0; color: var(--text); }
 
 .projects-box ul {
   list-style: none;
@@ -817,18 +828,150 @@ function hideTip() { tip.show = false }
   color: var(--muted);
 }
 
-.projects-box li {
-  margin-bottom: 4px;
-}
+.projects-box li { margin-bottom: 4px; }
 
 .slide-panel-enter-active,
-.slide-panel-leave-active {
-  transition: all 0.3s ease;
-}
+.slide-panel-leave-active { transition: all 0.3s ease; }
 
 .slide-panel-enter-from,
-.slide-panel-leave-to {
-  opacity: 0;
-  transform: translateX(-20px);
+.slide-panel-leave-to { opacity: 0; transform: translateX(-20px); }
+
+/* ==========================================================
+   VUE MOBILE : ACCORDÉON
+   ========================================================== */
+.skill-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 4px;
+}
+
+.branch-card {
+  background: var(--panel);
+  border: 1px solid #2c3550;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.branch-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  padding: 14px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.branch-icon {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 2px solid var(--branch-color);
+  color: #fff;
+  font-weight: 700;
+  font-size: .85rem;
+  box-shadow: 0 0 10px color-mix(in srgb, var(--branch-color) 45%, transparent);
+}
+
+.branch-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.branch-label { font-size: 1rem; font-weight: 700; color: var(--branch-color); }
+.branch-desc { font-size: .78rem; color: var(--muted); line-height: 1.35; }
+
+.chevron {
+  flex: none;
+  color: var(--muted);
+  font-size: 1.1rem;
+  transition: transform .2s ease;
+}
+
+.chevron.open { transform: rotate(180deg); }
+
+.node-list {
+  margin: 0;
+  padding: 0 14px 14px 14px;
+  border-top: 1px solid #1c2436;
+  list-style: none;
+}
+
+.node-list.lvl-2,
+.node-list.lvl-3 {
+  padding: 0 0 8px 14px;
+  border-top: none;
+  border-left: 2px solid #2c3550;
+  margin-left: 15px;
+}
+
+.skill-node.locked { opacity: .4; }
+
+.node-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  padding: 10px 4px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.node-row:disabled { cursor: not-allowed; }
+
+.node-icon {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1.5px solid var(--node-color);
+  background: var(--panel);
+  font-size: .7rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.node-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.node-label { font-size: .88rem; font-weight: 600; color: var(--text); }
+
+.node-stars { display: flex; gap: 2px; }
+.node-stars .star { color: #2c3550; font-size: .7rem; }
+.node-stars .star.filled { color: #ffb547; }
+
+.node-desc {
+  margin: 0 0 8px 40px;
+  font-size: .78rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.node-projects {
+  margin: 0 0 8px 40px;
+  padding: 0;
+  list-style: none;
+  font-size: .76rem;
+  color: var(--muted);
 }
 </style>

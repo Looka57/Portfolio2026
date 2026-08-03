@@ -21,9 +21,10 @@ const router = createRouter({
     {
       path: '/cgu',
       name: 'cgu',
-      component: () => import('../conditions/cgu.vue'),
+      component: () => import('../conditions/Cgu.vue'),
     },
   ],
 })
 
 export default router
+
