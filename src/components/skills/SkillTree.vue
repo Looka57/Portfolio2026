@@ -99,7 +99,7 @@ const tree = reactive([
         ]
       },
       { label: 'Photoshop', icon: 'Ps', desc: 'Retouche d’images et création d’assets graphiques.', level: 3 },
-      { label: 'Illustrator', icon: 'Ai', desc: 'Création de logos et d’illustrations vectorielles.', level: 2, locked: true },
+      { label: 'Illustrator', icon: 'Ai', desc: 'Création de logos et d’illustrations vectorielles.', level: 0, locked: true },
     ]
   },
   {
@@ -440,8 +440,8 @@ onUnmounted(() => {
             <polygon v-if="node.depth === 0" class="node-shape-diamond" :points="getDiamondPoints(node.x, node.y, 24)"
               fill="#0b0f1a" :stroke="node.color" stroke-width="2" />
 
-            <circle v-else class="node-shape-circle" :cx="node.x" :cy="node.y" r="22" fill="#0b0f1a" :stroke="node.color"
-              stroke-width="2" />
+            <circle v-else class="node-shape-circle" :cx="node.x" :cy="node.y" r="22" fill="#0b0f1a"
+              :stroke="node.color" stroke-width="2" />
 
             <text class="icon" :x="node.x" :y="node.y">{{ node.locked ? '🔒' : node.icon }}</text>
             <text class="label" :x="node.x" :y="node.y + (node.depth === 0 ? 38 : 34)">{{ node.label }}</text>
@@ -586,19 +586,56 @@ onUnmounted(() => {
   animation: pcbPulse 3s infinite ease-in-out;
 }
 
-.signal-1 { animation-delay: 0s; }
-.signal-2 { animation-delay: 0.8s; }
-.signal-3 { animation-delay: 0.3s; }
-.signal-4 { animation-delay: 1.1s; }
-.signal-5 { animation-delay: 0.6s; }
-.signal-6 { animation-delay: 1.4s; }
-.signal-7 { animation-delay: 0.9s; }
-.signal-8 { animation-delay: 1.7s; }
+.signal-1 {
+  animation-delay: 0s;
+}
+
+.signal-2 {
+  animation-delay: 0.8s;
+}
+
+.signal-3 {
+  animation-delay: 0.3s;
+}
+
+.signal-4 {
+  animation-delay: 1.1s;
+}
+
+.signal-5 {
+  animation-delay: 0.6s;
+}
+
+.signal-6 {
+  animation-delay: 1.4s;
+}
+
+.signal-7 {
+  animation-delay: 0.9s;
+}
+
+.signal-8 {
+  animation-delay: 1.7s;
+}
 
 @keyframes pcbPulse {
-  0% { opacity: 0.2; transform: scale(0.7); filter: drop-shadow(0 0 0px transparent); }
-  50% { opacity: 1; transform: scale(1.3); filter: drop-shadow(0 0 6px currentColor); }
-  100% { opacity: 0.2; transform: scale(0.7); filter: drop-shadow(0 0 0px transparent); }
+  0% {
+    opacity: 0.2;
+    transform: scale(0.7);
+    filter: drop-shadow(0 0 0px transparent);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+    filter: drop-shadow(0 0 6px currentColor);
+  }
+
+  100% {
+    opacity: 0.2;
+    transform: scale(0.7);
+    filter: drop-shadow(0 0 0px transparent);
+  }
 }
 
 /* Controls */
@@ -649,14 +686,32 @@ onUnmounted(() => {
 }
 
 @keyframes popIn {
-  0% { opacity: 0; transform: scale(0.85); transform-origin: center; }
-  100% { opacity: 1; transform: scale(1); transform-origin: center; }
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+    transform-origin: center;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: center;
+  }
 }
 
 /* Nodes */
-.node-group { cursor: pointer; }
-.node-group.locked { cursor: not-allowed; opacity: .4; }
-.node-group.leaf { cursor: pointer; }
+.node-group {
+  cursor: pointer;
+}
+
+.node-group.locked {
+  cursor: not-allowed;
+  opacity: .4;
+}
+
+.node-group.leaf {
+  cursor: pointer;
+}
 
 .node-shape-diamond,
 .node-shape-circle {
@@ -675,8 +730,17 @@ onUnmounted(() => {
 }
 
 @keyframes subtlePulse {
-  0%, 100% { stroke-width: 2px; filter: drop-shadow(0 0 2px transparent); }
-  50% { stroke-width: 3px; filter: drop-shadow(0 0 6px var(--node-color)); }
+
+  0%,
+  100% {
+    stroke-width: 2px;
+    filter: drop-shadow(0 0 2px transparent);
+  }
+
+  50% {
+    stroke-width: 3px;
+    filter: drop-shadow(0 0 6px var(--node-color));
+  }
 }
 
 .icon {
@@ -704,7 +768,11 @@ onUnmounted(() => {
 }
 
 /* Core Ring */
-.core-bg { fill: var(--panel); stroke: #1c2436; stroke-width: 2.5; }
+.core-bg {
+  fill: var(--panel);
+  stroke: #1c2436;
+  stroke-width: 2.5;
+}
 
 .core-ring {
   fill: none;
@@ -714,8 +782,13 @@ onUnmounted(() => {
 }
 
 @keyframes spinRing {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .core-label {
@@ -750,10 +823,19 @@ onUnmounted(() => {
   transition: opacity .15s ease, transform .15s ease;
 }
 
-.tooltip.show { opacity: 1; transform: translateY(0); }
+.tooltip.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-.t-label { font-weight: 700; margin-bottom: 2px; }
-.t-desc { color: var(--muted); }
+.t-label {
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.t-desc {
+  color: var(--muted);
+}
 
 .skill-sidebar {
   position: absolute;
@@ -781,7 +863,9 @@ onUnmounted(() => {
   cursor: pointer;
 }
 
-.close-btn:hover { color: #fff; }
+.close-btn:hover {
+  color: #fff;
+}
 
 .sidebar-header {
   display: flex;
@@ -790,8 +874,15 @@ onUnmounted(() => {
   margin-bottom: 12px;
 }
 
-.sidebar-icon { font-size: 1.4rem; font-weight: bold; }
-.sidebar-header h3 { margin: 0; font-size: 1.1rem; }
+.sidebar-icon {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
 
 .sidebar-desc {
   font-size: 0.85rem;
@@ -814,11 +905,25 @@ onUnmounted(() => {
   margin-bottom: 4px;
 }
 
-.stars { display: flex; gap: 4px; }
-.star { color: #2c3550; font-size: 1.1rem; }
-.star.filled { color: #ffb547; }
+.stars {
+  display: flex;
+  gap: 4px;
+}
 
-.projects-box h4 { font-size: 0.8rem; margin: 0 0 8px 0; color: var(--text); }
+.star {
+  color: #2c3550;
+  font-size: 1.1rem;
+}
+
+.star.filled {
+  color: #ffb547;
+}
+
+.projects-box h4 {
+  font-size: 0.8rem;
+  margin: 0 0 8px 0;
+  color: var(--text);
+}
 
 .projects-box ul {
   list-style: none;
@@ -828,13 +933,20 @@ onUnmounted(() => {
   color: var(--muted);
 }
 
-.projects-box li { margin-bottom: 4px; }
+.projects-box li {
+  margin-bottom: 4px;
+}
 
 .slide-panel-enter-active,
-.slide-panel-leave-active { transition: all 0.3s ease; }
+.slide-panel-leave-active {
+  transition: all 0.3s ease;
+}
 
 .slide-panel-enter-from,
-.slide-panel-leave-to { opacity: 0; transform: translateX(-20px); }
+.slide-panel-leave-to {
+  opacity: 0;
+  transform: translateX(-20px);
+}
 
 /* ==========================================================
    VUE MOBILE : ACCORDÉON
@@ -888,8 +1000,17 @@ onUnmounted(() => {
   gap: 2px;
 }
 
-.branch-label { font-size: 1rem; font-weight: 700; color: var(--branch-color); }
-.branch-desc { font-size: .78rem; color: var(--muted); line-height: 1.35; }
+.branch-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--branch-color);
+}
+
+.branch-desc {
+  font-size: .78rem;
+  color: var(--muted);
+  line-height: 1.35;
+}
 
 .chevron {
   flex: none;
@@ -898,7 +1019,9 @@ onUnmounted(() => {
   transition: transform .2s ease;
 }
 
-.chevron.open { transform: rotate(180deg); }
+.chevron.open {
+  transform: rotate(180deg);
+}
 
 .node-list {
   margin: 0;
@@ -915,7 +1038,9 @@ onUnmounted(() => {
   margin-left: 15px;
 }
 
-.skill-node.locked { opacity: .4; }
+.skill-node.locked {
+  opacity: .4;
+}
 
 .node-row {
   width: 100%;
@@ -929,7 +1054,9 @@ onUnmounted(() => {
   cursor: pointer;
 }
 
-.node-row:disabled { cursor: not-allowed; }
+.node-row:disabled {
+  cursor: not-allowed;
+}
 
 .node-icon {
   flex: none;
@@ -954,11 +1081,25 @@ onUnmounted(() => {
   gap: 2px;
 }
 
-.node-label { font-size: .88rem; font-weight: 600; color: var(--text); }
+.node-label {
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--text);
+}
 
-.node-stars { display: flex; gap: 2px; }
-.node-stars .star { color: #2c3550; font-size: .7rem; }
-.node-stars .star.filled { color: #ffb547; }
+.node-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.node-stars .star {
+  color: #2c3550;
+  font-size: .7rem;
+}
+
+.node-stars .star.filled {
+  color: #ffb547;
+}
 
 .node-desc {
   margin: 0 0 8px 40px;

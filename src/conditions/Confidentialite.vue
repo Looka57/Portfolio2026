@@ -9,94 +9,112 @@
             </router-link>
 
             <!-- Titre principal -->
-            <h1 class="text-3xl font-bold text-white mb-8 border-b border-purple-500/30 pb-4">
-                Politique de Confidentialité
+            <h1 class="text-3xl font-bold text-white mb-8 border-b border-purple-500/30 pb-4 text-center">
+                🔐 Politique de Confidentialité (RGPD)
             </h1>
 
-            <div class="space-y-8 text-sm leading-relaxed">
+            <p class="text-center text-slate-400 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">
+                Chez <strong class="text-white">Amandine Napolitano</strong>, la protection de vos données personnelles
+                est une priorité.
+                Je m'engage à respecter votre vie privée et à garantir la sécurité de vos informations
+                conformément au Règlement Général sur la Protection des Données (RGPD).
+            </p>
 
-                <!-- Intro -->
-                <section class="bg-slate-900/40 p-6 rounded-xl border border-slate-800/80">
-                    <p class="text-slate-300">
-                        La présente Politique de Confidentialité décrit la manière dont <strong>Amandine
-                            Napolitano</strong> traite les informations lors de votre visite sur ce site portfolio,
-                        conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique
-                        et Libertés.
-                    </p>
-                </section>
+            <div class="space-y-6 text-sm leading-relaxed">
 
-                <!-- 1. Absence de collecte directe -->
-                <section class="bg-slate-900/40 p-6 rounded-xl border border-slate-800/80">
-                    <h2 class="text-base font-semibold text-purple-400 mb-3">
-                        1. Collecte des données personnelles
+                <!-- 1. Collecte des données -->
+                <section
+                    class="bg-slate-900/40 p-6 rounded-xl border-l-4 border-l-purple-500 border border-slate-800/80">
+                    <h2 class="text-base font-semibold text-purple-400 mb-3 uppercase tracking-wider text-xs">
+                        1. Collecte des données
                     </h2>
-                    <p class="text-slate-400 leading-relaxed mb-3">
-                        Ce site est un portfolio exclusivement informatif. <strong>Aucun formulaire de contact ni aucun
-                            dispositif de collecte de données</strong> n'est présent sur le site.
+                    <p class="text-slate-300 mb-3">
+                        Dans le cadre de l'utilisation de ce portfolio et des échanges directs, seules les informations
+                        strictement nécessaires sont traitées :
                     </p>
-                    <p class="text-slate-400 leading-relaxed">
-                        Si vous choisissez de me contacter directement via votre propre messagerie e-mail, les
-                        informations transmises (nom, e-mail, message) seront uniquement utilisées pour échanger avec
-                        vous et traiter votre demande. Elles ne seront <strong>jamais cédées, vendues ou partagées avec
-                            des tiers</strong>.
-                    </p>
-                </section>
-
-                <!-- 2. Gestion des Cookies -->
-                <section class="bg-slate-900/40 p-6 rounded-xl border border-slate-800/80">
-                    <h2 class="text-base font-semibold text-purple-400 mb-3">
-                        2. Absence de cookies et traceurs
-                    </h2>
-                    <p class="text-slate-400 leading-relaxed">
-                        Ce site n'utilise <strong>aucun cookie</strong> (ni cookie technique, ni cookie publicitaire, ni
-                        traceur d'analyse d'audience). Votre navigation reste totalement anonyme et aucun fichier témoin
-                        n'est déposé sur votre appareil.
-                    </p>
-                </section>
-
-                <!-- 3. Sécurité -->
-                <section class="bg-slate-900/40 p-6 rounded-xl border border-slate-800/80">
-                    <h2 class="text-base font-semibold text-purple-400 mb-3">
-                        3. Sécurité de la connexion
-                    </h2>
-                    <p class="text-slate-400 leading-relaxed">
-                        L'ensemble des échanges entre votre navigateur et ce site est sécurisé par un protocole de
-                        chiffrement SSL/TLS (HTTPS), garantissant la confidentialité et l'intégrité de la navigation.
-                    </p>
-                </section>
-
-                <!-- 4. Vos droits (RGPD) -->
-                <section class="bg-slate-900/40 p-6 rounded-xl border border-slate-800/80">
-                    <h2 class="text-base font-semibold text-purple-400 mb-3">
-                        4. Vos droits (RGPD)
-                    </h2>
-                    <p class="mb-3 text-slate-400">
-                        Si vous m'avez contactée par e-mail, vous disposez à tout moment des droits suivants concernant
-                        vos échanges :
-                    </p>
-                    <ul class="space-y-1.5 text-slate-400 list-disc list-inside pl-2 mb-4">
-                        <li><strong>Droit d'accès et de rectification :</strong> Consulter ou corriger les informations
-                            échangées.</li>
-                        <li><strong>Droit à l'effacement :</strong> Demander la suppression définitive de nos
-                            historiques de mails.</li>
+                    <ul class="space-y-2 text-slate-300">
+                        <li class="flex items-center gap-2"><span class="text-purple-400">🔹</span> Nom et prénom (si
+                            transmis par e-mail)</li>
+                        <li class="flex items-center gap-2"><span class="text-purple-400">🔹</span> Adresse e-mail de
+                            contact</li>
+                        <li class="flex items-center gap-2"><span class="text-purple-400">🔹</span> Contenu du message
+                            et demandes de projets</li>
                     </ul>
-                    <p class="text-slate-400">
-                        Pour exercer ces droits, vous pouvez me contacter à :
-                        <a href="mailto:contact@domaine.com" class="text-purple-400 underline hover:text-white">[Ton
-                            Email Pro]</a>.
+                </section>
+
+                <!-- 2. Finalités et non-transmission -->
+                <section class="bg-slate-900/40 p-6 rounded-xl border border-slate-800/80">
+                    <h2 class="text-base font-semibold text-purple-400 mb-3 uppercase tracking-wider text-xs">
+                        2. Finalités du traitement et non-transmission
+                    </h2>
+                    <p class="mb-3">Vos données sont utilisées exclusivement pour :</p>
+                    <ul class="space-y-1.5 text-slate-400 list-disc list-inside pl-2 mb-4">
+                        <li>Répondre aux demandes de renseignements ou d'offres de collaboration.</li>
+                        <li>Assurer le suivi des projets web freelance en cours.</li>
+                        <li>Établir des propositions commerciales ou devis sur demande.</li>
+                    </ul>
+
+                    <div class="p-4 rounded-lg bg-emerald-950/30 border border-emerald-500/40 text-emerald-300 text-xs">
+                        <strong class="font-bold text-emerald-200">Engagement de confidentialité :</strong> Vos données
+                        ne sont ni revendues, ni transmises à des tiers, ni utilisées à des fins commerciales ou
+                        publicitaires.
+                    </div>
+                </section>
+
+                <!-- 3. Suivi technique et performances -->
+                <section class="bg-slate-900/40 p-6 rounded-xl border border-slate-800/80">
+                    <h2 class="text-base font-semibold text-purple-400 mb-3 uppercase tracking-wider text-xs">
+                        3. Suivi technique et performances
+                    </h2>
+                    <p class="mb-2">
+                        À des fins de suivi technique et d’optimisation du référencement naturel, le site utilise
+                        <strong class="text-white">Google Search Console</strong>.
+                    </p>
+                    <p class="text-xs text-slate-400">
+                        Cet outil permet de mesurer les performances globales du site sans installer de cookie sur votre
+                        navigateur ni collecter de données personnelles sur les visiteurs.
                     </p>
                 </section>
 
-                <!-- 5. Autorité de contrôle -->
+                <!-- 4 & 5. Grille Base légale + Conservation -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <section class="bg-slate-900/40 p-6 rounded-xl border border-slate-800/80">
+                        <h2 class="text-base font-semibold text-purple-400 mb-3 uppercase tracking-wider text-xs">
+                            4. Base légale
+                        </h2>
+                        <p class="text-slate-400 text-xs leading-relaxed">
+                            Le traitement repose sur votre consentement explicite (envoi d'e-mail) et sur l'exécution de
+                            mesures précontractuelles liées à vos demandes de prestation web.
+                        </p>
+                    </section>
+
+                    <section class="bg-slate-900/40 p-6 rounded-xl border border-slate-800/80">
+                        <h2 class="text-base font-semibold text-purple-400 mb-3 uppercase tracking-wider text-xs">
+                            5. Conservation
+                        </h2>
+                        <p class="text-slate-400 text-xs leading-relaxed">
+                            Les échanges e-mails professionnels sont conservés pendant la durée nécessaire à la gestion
+                            de la relation commerciale, puis supprimés après une période d'inactivité.
+                        </p>
+                    </section>
+                </div>
+
+                <!-- 6. Vos droits (RGPD) -->
                 <section class="bg-slate-900/40 p-6 rounded-xl border border-slate-800/80">
-                    <h2 class="text-base font-semibold text-purple-400 mb-3">
-                        5. Autorité de contrôle
+                    <h2 class="text-base font-semibold text-purple-400 mb-3 uppercase tracking-wider text-xs">
+                        6. Vos droits (RGPD)
                     </h2>
-                    <p class="text-slate-400 leading-relaxed">
-                        Si vous estimez que le traitement de vos échanges e-mails ne respecte pas le RGPD, vous avez la
-                        possibilité de déposer une réclamation auprès de la CNIL (<a href="https://www.cnil.fr"
-                            target="_blank" class="text-purple-300 underline">www.cnil.fr</a>).
+                    <p class="mb-3">
+                        Conformément au RGPD, vous disposez des droits d’accès, de rectification, d’effacement,
+                        d’opposition et de portabilité de vos données.
                     </p>
+                    <div class="p-4 rounded-lg bg-purple-950/30 border border-purple-500/40 text-purple-300 text-xs">
+                        Toute demande peut être adressée directement par e-mail à :
+                        <a href="mailto:contact@domaine.com" class="text-white underline hover:text-purple-200">[Ton
+                            Email Pro]</a>. Vous pouvez également introduire une réclamation auprès de la CNIL (<a
+                            href="https://www.cnil.fr" target="_blank"
+                            class="underline hover:text-white">www.cnil.fr</a>).
+                    </div>
                 </section>
 
                 <!-- Footer / Date -->
@@ -110,5 +128,5 @@
 </template>
 
 <style scoped>
-/* Style géré par Tailwind CSS */
+/* Style géré intégralement par Tailwind CSS */
 </style>
