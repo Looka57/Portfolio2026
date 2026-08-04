@@ -5,37 +5,51 @@ import { projects } from '@/data/Projects';
 
 const router = useRouter();
 
+
 // État de l'animation de démarrage (Boot)
 const isBooting = ref(false);
 const bootProgress = ref(0);
 const activeProjectId = ref('');
+
 
 const currentProjectName = computed(() => {
   const p = projects.find(proj => proj.id === activeProjectId.value);
   return p ? p.title.toUpperCase() : '';
 });
 
+
 // Déclenchement de la séquence d'allumage Terminal
 const launchProject = (id) => {
+
+  // Empêche plusieurs lancements simultanés
+  if (isBooting.value) return;
+
   activeProjectId.value = id;
   bootProgress.value = 0;
   isBooting.value = true;
 
+
   const interval = setInterval(() => {
-    bootProgress.value += Math.floor(Math.random() * 20) + 15;
+
+    bootProgress.value += Math.floor(Math.random() * 15) + 8;
+
 
     if (bootProgress.value >= 100) {
+
       bootProgress.value = 100;
       clearInterval(interval);
 
-      // Redirection vers la page étude de cas
+
       setTimeout(() => {
         isBooting.value = false;
         router.push(`/projets/${id}`);
-      }, 50);
+      }, 800);
+
     }
-  }, 90);
+
+  }, 150);
 };
+
 </script>
 
 
@@ -119,6 +133,15 @@ const launchProject = (id) => {
             <div class="bg-[#FEE4B3] h-full transition-all duration-100 ease-out"
               :style="{ width: bootProgress + '%' }"></div>
           </div>
+          <!-- Validation du chargement -->
+          <p v-if="bootProgress >= 100" class="text-xs text-green-400 animate-pulse">
+            > SYSTEM_READY
+          </p>
+
+          <p v-if="bootProgress >= 100" class="text-xs text-gray-400">
+            > LAUNCHING_PROJECT...
+          </p>
+
 
           <div class="flex justify-between text-[10px] text-gray-400">
             <span>MEM_BOOT_OK</span>

@@ -23,6 +23,11 @@ const router = createRouter({
       name: 'cgu',
       component: () => import('../conditions/Cgu.vue'),
     },
+    {
+      path: '/projets/:id', 
+      name: 'ProjectDetail',
+      component: () => import('../components/projects/ProjectDetail.vue'),
+    }
   ],
 
   scrollBehavior(to, from, savedPosition) {
