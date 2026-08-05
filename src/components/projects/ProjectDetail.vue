@@ -10,10 +10,10 @@ import ademVideo from '@/assets/videos/demo-adem.mp4';
 import ademVideo2 from '@/assets/videos/demo-adem2.mp4';
 
 // ADMIN
-// import adminImg from '@/assets/img/admin2.png';
-// import adminVideo2 from '@/assets/videos/demo-admin2.mp4';
-// import adminVideo3 from '@/assets/videos/demo-admin3.mp4';
-// import adminVideo4 from '@/assets/videos/demo-admin.mp4';
+import adminImg from '@/assets/img/admin2.png';
+import adminVideo2 from '@/assets/videos/demo-admin2.mp4';
+import adminVideo3 from '@/assets/videos/demo-admin3.mp4';
+import adminVideo4 from '@/assets/videos/demo-admin.mp4';
 
 // ASP
 import aspImg from '@/assets/img/asp.png';
@@ -72,10 +72,10 @@ const projectsData = {
     githubUrl: "https://github.com/Looka57/AdminMnsV1.git",
 
     screenshots: [
-      // { type: 'image', url: adminImg },
-      // { type: 'video', url: adminVideo2 },
-      // { type: 'video', url: adminVideo4 },
-      // { type: 'video', url: adminVideo3 }
+      { type: 'image', url: adminImg },
+      { type: 'video', url: adminVideo2 },
+      { type: 'video', url: adminVideo4 },
+      { type: 'video', url: adminVideo3 }
     ],
 
     context:

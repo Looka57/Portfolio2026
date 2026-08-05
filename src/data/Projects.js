@@ -3,7 +3,7 @@ import ecran2 from '@/assets/img/ecran2.png'
 import ecran3 from '@/assets/img/ecran3.png'
 
 import ademImg from '@/assets/img/rapportAdem.png'
-import adminImg from '@/assets/img/admin.jpg'
+import adminImg from '@/assets/img/admin2.png'
 import aspImg from '@/assets/img/aspJudo.png'
 
 import htmlIcon from '@/assets/icons/html.png'
