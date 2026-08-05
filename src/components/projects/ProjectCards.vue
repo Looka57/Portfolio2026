@@ -82,12 +82,12 @@ const launchProject = (id) => {
                   <!-- Bouton d'immersion Rétro -->
                   <button @click="launchProject(project.id)"
                     class="w-full py-2 px-3 bg-[#FEE4B3] text-black font-['Kode_Mono'] text-xs font-bold rounded-lg hover:bg-[#D7F3F5] transition-all transform hover:scale-105 flex items-center justify-center gap-2 shadow-[0_0_12px_rgba(254,228,179,0.4)] cursor-pointer">
-                    <span>🕹️</span> EXPLORER
+                      EXPLORER
                   </button>
 
                   <!-- Lien externe rapide (Site ou GitHub) -->
                   <a :href="project.externalUrl" target="_blank"
-                    class="text-xs text-[#8F98BE] hover:text-white underline font-['Kode_Mono'] transition-colors">
+                  class="inline-flex items-center gap-2 text-xs text-[#8F98BE] hover:text-[#FEE4B3] transition-colors border border-[#8F98BE]/30 px-3 py-1.5 rounded-lg bg-[#1E293B]/60">
                     [{{ project.externalLabel }}]
                   </a>
                 </div>

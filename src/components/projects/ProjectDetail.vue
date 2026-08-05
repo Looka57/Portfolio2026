@@ -10,7 +10,10 @@ import ademVideo from '@/assets/videos/demo-adem.mp4';
 import ademVideo2 from '@/assets/videos/demo-adem2.mp4';
 
 // ADMIN
-import adminImg from '@/assets/img/admin.jpg';
+// import adminImg from '@/assets/img/admin2.png';
+// import adminVideo2 from '@/assets/videos/demo-admin2.mp4';
+// import adminVideo3 from '@/assets/videos/demo-admin3.mp4';
+// import adminVideo4 from '@/assets/videos/demo-admin.mp4';
 
 // ASP
 import aspImg from '@/assets/img/asp.png';
@@ -27,9 +30,9 @@ const projectsData = {
     title: "Rapport d'activité 2023",
     client: "ADEM (Ministère du Travail)",
     lieu: "Luxembourg",
-    role: "Développeur Web (Stage)",
-    duration: "2 Mois",
-    technologies: "HTML5, CSS3, PHP, MySQL, JS",
+    role: "Développeuse Web (Stage)",
+    duration: "2 mois",
+    technologies: "HTML5, CSS3, PHP, MySQL, JavaScript",
     liveUrl: "https://adem2023.lu/",
     githubUrl: null,
     screenshots: [
@@ -38,66 +41,99 @@ const projectsData = {
       { type: 'image', url: ademImg2 },
       { type: 'video', url: ademVideo2 }
     ],
-    context: "Conception et développement du rapport d'activité interactif pour l'Agence pour le développement de l'emploi (ADEM) au Luxembourg. L'objectif était de rendre les chiffres annuels dynamiques, modernes et agréables à consulter pour le grand public et le ministère.",
+
+    context:
+      "Conception et développement du premier rapport d'activité annuel interactif de l'ADEM (Agence pour le développement de l'emploi) au Luxembourg. Ce projet est né d'une première collaboration entre la CCI Campus METZ et l'ADEM afin de remplacer le traditionnel rapport PDF par une plateforme web moderne, interactive et accessible. L'objectif était de valoriser les données statistiques de l'année tout en offrant une expérience de consultation fluide aux citoyens, aux partenaires institutionnels et au ministère.",
+
     features: [
-      "Consultation des statistiques annuelles sous forme dynamique",
-      "Navigation intuitive entre les différentes sections du rapport",
-      "Design entièrement responsive (PC, Tablette, Smartphone)",
-      "Optimisation du temps de chargement des assets"
+      "Développement du premier rapport annuel interactif de l'ADEM",
+      "Consultation dynamique des statistiques et indicateurs clés",
+      "Navigation fluide entre les différentes sections du rapport",
+      "Back-office permettant aux équipes de l'ADEM de gérer le contenu en toute autonomie",
+      "Gestion indépendante des sections, blocs et agencement des pages",
+      "Interface responsive compatible PC, tablette et mobile",
+      "Optimisation des performances et du temps de chargement",
+      "Transmission du projet et du code source aux équipes de l'ADEM"
     ],
-    technicalDetails: "Projet structuré en PHP avec une base de données MySQL. L'accent a été mis sur le respect strict de la charte graphique officielle et sur la clarté de l'intégration HTML/CSS."
+
+    technicalDetails:
+      "Application développée en PHP avec une base de données MySQL, respectant la charte graphique officielle de l'ADEM. Le projet comprenait également un back-office sur mesure permettant aux équipes de modifier le contenu, l'organisation et les différentes sections du rapport sans intervention d'un développeur. L'architecture a été pensée pour faciliter la réutilisation et les futures éditions du rapport annuel."
   },
 
   'admin-mns': {
     title: "Admin MNS",
     client: "Metz Numeric School",
-    lieu: "METZ",
-    role: "Développeur Fullstack",
-    duration: "6 Mois (Projet fil rouge)",
-    technologies: "HTML/CSS, C#, .NET, SQL",
+    lieu: "Metz",
+    role: "Développeuse Full Stack",
+    duration: "6 mois (Projet fil rouge)",
+    technologies: "Vue.js, C#, ASP.NET Core, SQL Server",
+
     liveUrl: null,
     githubUrl: "https://github.com/Looka57/AdminMnsV1.git",
+
     screenshots: [
-      { type: 'video', url: ademVideo },
-      { type: 'image', url: ademImg },
-      { type: 'image', url: ademImg2 },
-      { type: 'video', url: ademVideo2 }
+      // { type: 'image', url: adminImg },
+      // { type: 'video', url: adminVideo2 },
+      // { type: 'video', url: adminVideo4 },
+      // { type: 'video', url: adminVideo3 }
     ],
-    context: "Dans le cadre de la formation CDA, conception d'une application d'administration complète permettant de gérer les données de l'école Metz Numeric School (étudiants, enseignants, plannings).",
+
+    context:
+      "Développement d'une application d'administration dans le cadre de la formation Concepteur Développeur d'Applications (Bac+3). Ce projet fil rouge avait pour objectif de moderniser et centraliser la gestion des étudiants de Metz Numeric School, depuis leur candidature jusqu'à leur suivi administratif une fois intégrés à l'établissement.",
+
     features: [
-      "Gestion CRUD complète des utilisateurs et enseignants",
-      "Tableau de bord d'analyse avec statistiques visuelles",
-      "Système d'authentification et gestion des rôles (RBAC)",
-      "Gestion des plannings et export de données"
+      "Gestion complète des candidatures étudiantes",
+      "Validation des dossiers administratifs et des pièces justificatives",
+      "Suivi en temps réel de l'avancement du dossier par l'étudiant",
+      "Notification automatique par e-mail lors de la validation du dossier",
+      "Gestion des étudiants, administrateurs et enseignants",
+      "Système d'authentification sécurisé avec gestion des rôles",
+      "Justification des retards et des absences par les étudiants",
+      "Tableaux de bord et statistiques d'administration",
+      "Gestion et consultation des informations administratives"
     ],
-    technicalDetails: "L'application repose sur un backend robuste en C# / .NET permettant d'assurer la sécurité des données et des requêtes optimisées vers la base de données SQL."
+
+    technicalDetails:
+      "Application Full Stack développée en ASP.NET Core avec C# et SQL Server. L'architecture repose sur une gestion des rôles (administrateurs, enseignants et étudiants), un système de validation des dossiers avec contrôle des pièces justificatives, des notifications automatiques par e-mail ainsi qu'un espace personnel permettant aux étudiants de suivre leur dossier avant leur admission puis de gérer leurs justificatifs d'absence et de retard après leur intégration à l'école."
   },
 
   'asp-arts-martiaux': {
-    title: "ASP Arts Martiaux ",
+    title: "ASP Arts Martiaux",
     client: "Club AS Porcelette",
-    lieu: "PORCELETTE",
-    role: "Développeur Web",
-    duration: "Projet Réel",
-    technologies: "HTML/CSS, Vue.js, C#, .NET",
+    lieu: "Porcelette",
+    role: "Développeuse Web Full Stack",
+    duration: "Projet réel - En production",
+    technologies: "Vue.js, C#, ASP.NET Core, SQL Server, Entity Framework, Docker",
     liveUrl: "https://asporcelette-art-martiaux.fr/",
     githubUrl: "https://github.com/Looka57/aspPorcelette.git",
     githubUrlFront: "https://github.com/Looka57/asp-porcelette-front.git",
+
     screenshots: [
       { type: 'video', url: aspVideo },
       { type: 'image', url: aspImg },
       { type: 'image', url: aspImg2 },
       { type: 'video', url: aspVideo2 }
     ],
-    context: "Création et gestion du site web officiel du club d'arts martiaux de Porcelette. L'objectif principal était de digitaliser le club, présenter les horaires des cours et faciliter les prises de contact.",
+
+    context:
+      "Conception et développement complet du site officiel de l'ASP Arts Martiaux de Porcelette. Membre du comité du club, j'ai souhaité moderniser son fonctionnement en créant une plateforme centralisant la communication, la gestion administrative et le suivi des différentes disciplines (Judo, Ju-Jitsu, Taekwondo, Aïkido et Judo Détente). L'objectif était d'offrir aux licenciés, aux parents et aux visiteurs une source d'information fiable tout en simplifiant le travail des responsables grâce à un back-office entièrement personnalisé.",
+
     features: [
-      "Présentation des différentes sections (Judo, Taekwondo...)",
-      "Module de contact direct pour les nouvelles inscriptions",
-      "Affichage clair des horaires, tarifs et événements",
-      "Interface rapide et moderne responsive"
+      "Présentation des différentes disciplines du club",
+      "Publication des actualités, événements et stages",
+      "Gestion autonome des contenus via un back-office",
+      "Administration des adhérents, enseignants et responsables",
+      "Système d'inscription et de suivi des licenciés",
+      "Gestion des formulaires et des demandes de contact",
+      "Module de comptabilité avec tableaux de bord et graphiques",
+      "Gestion des cotisations et du suivi financier",
+      "Gestion des horaires, tarifs et informations du club",
+      "Architecture responsive adaptée aux ordinateurs, tablettes et smartphones"
     ],
-    technicalDetails: "Développé avec Vue.js en front-end pour une navigation fluide sans rechargement de page, couplé à une architecture C# / .NET pour la gestion des informations."
-  }
+
+    technicalDetails:
+      "Application Full Stack développée avec Vue.js pour le front-end et ASP.NET Core en C#, reposant sur SQL Server et Entity Framework. Le projet intègre une authentification par rôles (administrateur, enseignants, comptable...), un back-office complet permettant de gérer les adhérents, les actualités, les événements, les disciplines, les documents administratifs ainsi qu'un module de comptabilité avec statistiques et graphiques. L'application est déployée sur un VPS OVH à l'aide de Docker et est utilisée quotidiennement par le club."
+  },
 };
 
 const loadProject = () => {
@@ -119,11 +155,12 @@ watch(() => route.params.id, () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#0F172A] text-gray-200 font-['Kode_Mono'] py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+  <div
+    class="min-h-screen bg-[#0F172A] text-gray-200 font-['Kode_Mono'] py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
     <!-- Overlay Scanlines pour garder le style CRT -->
     <div class="scanlines"></div>
 
-    <!-- Conteneur principale -->
+    <!-- Conteneur principal -->
     <div class="max-w-6xl mx-auto space-y-10 relative z-10">
 
       <!-- Bouton Retour -->
@@ -133,21 +170,33 @@ watch(() => route.params.id, () => {
       </router-link>
 
       <!-- En-tête Terminal / Fiche Projet -->
-      <header class="bg-[#1E293B]/80 border-2 border-[#121137] rounded-3xl p-6 md:p-8 shadow-[0_0_20px_rgba(18,17,55,0.8)] relative">
+      <header
+        class="bg-[#1E293B]/80 border-2 border-[#121137] rounded-3xl p-6 md:p-8 shadow-[0_0_20px_rgba(18,17,55,0.8)] relative">
         <div class="flex flex-wrap justify-between items-start gap-4 mb-6 border-b border-gray-700/60 pb-4">
           <div>
-            <span class="text-xs text-green-400 font-mono">[ SYSTEM_STATUS: ONLINE ]</span>
+            <!-- Statut dynamique (Vert si liveUrl existe, Rouge sinon) -->
+            <span :class="project.liveUrl ? 'text-green-400 font-mono text-xs' : 'text-rose-400 font-mono text-xs'">
+              [ SYSTEM_STATUS: {{ project.liveUrl ? 'ONLINE' : 'OFFLINE' }} ]
+            </span>
             <h1 class="text-2xl sm:text-4xl font-bold text-[#FEE4B3] mt-1">
               {{ project.title }}
             </h1>
           </div>
 
           <!-- Liens Directs -->
-          <div class="flex flex-wrap gap-3">
+          <div class="flex flex-wrap gap-3 items-center">
+            <!-- CAS 1 : En Ligne -->
             <a v-if="project.liveUrl" :href="project.liveUrl" target="_blank"
-              class="px-4 py-2 bg-[#FEE4B3] text-black font-bold rounded-lg text-xs hover:bg-[#D7F3F5] transition-all shadow-md">
+              class="px-4 py-2 bg-[#FEE4B3] text-black font-bold rounded-lg text-xs hover:bg-[#D7F3F5] transition-all shadow-md flex items-center gap-1.5">
               🌐 Voir le site
             </a>
+
+            <!-- CAS 2 : Hors Ligne -->
+            <span v-else
+              class="px-4 py-2 bg-rose-950/40 text-rose-400 border border-rose-500/30 font-bold rounded-lg text-xs select-none cursor-not-allowed">
+              🔴 Site Hors Ligne
+            </span>
+
             <a v-if="project.githubUrl" :href="project.githubUrl" target="_blank"
               class="px-4 py-2 bg-[#8F98BE] text-black font-bold rounded-lg text-xs hover:bg-white transition-all shadow-md">
               💻 Dépôt GitHub (Back-End)
@@ -210,11 +259,11 @@ watch(() => route.params.id, () => {
             APERÇUS DU PROJET
           </h3>
 
-          <!-- Grille d'aperçus ajustée en hauteur pour la nouvelle largeur -->
+          <!-- Grille d'aperçus -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div v-for="(item, index) in project.screenshots" :key="index"
               class="rounded-xl overflow-hidden border border-gray-700 bg-black/40 p-2 group transition-all hover:border-[#FEE4B3]/50">
-              
+
               <!-- Vidéo -->
               <video v-if="typeof item === 'object' && item.type === 'video'" :src="item.url" autoplay loop muted
                 playsinline class="w-full h-56 md:h-72 object-cover object-top rounded-lg"></video>
