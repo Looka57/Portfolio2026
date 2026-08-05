@@ -5,7 +5,6 @@ import { projects } from '@/data/Projects';
 
 const router = useRouter();
 
-
 // État de l'animation de démarrage (Boot)
 const isBooting = ref(false);
 const bootProgress = ref(0);
@@ -82,12 +81,12 @@ const launchProject = (id) => {
                   <!-- Bouton d'immersion Rétro -->
                   <button @click="launchProject(project.id)"
                     class="w-full py-2 px-3 bg-[#FEE4B3] text-black font-['Kode_Mono'] text-xs font-bold rounded-lg hover:bg-[#D7F3F5] transition-all transform hover:scale-105 flex items-center justify-center gap-2 shadow-[0_0_12px_rgba(254,228,179,0.4)] cursor-pointer">
-                      EXPLORER
+                    EXPLORER
                   </button>
 
                   <!-- Lien externe rapide (Site ou GitHub) -->
                   <a :href="project.externalUrl" target="_blank"
-                  class="inline-flex items-center gap-2 text-xs text-[#8F98BE] hover:text-[#FEE4B3] transition-colors border border-[#8F98BE]/30 px-3 py-1.5 rounded-lg bg-[#1E293B]/60">
+                    class="inline-flex items-center gap-2 text-xs text-[#8F98BE] hover:text-[#FEE4B3] transition-colors border border-[#8F98BE]/30 px-3 py-1.5 rounded-lg bg-[#1E293B]/60">
                     [{{ project.externalLabel }}]
                   </a>
                 </div>
@@ -103,18 +102,31 @@ const launchProject = (id) => {
                 {{ project.description }}
               </p>
 
-              <!-- Stack Technique -->
-              <div class="flex flex-wrap items-center gap-2">
-                <img v-for="(tech, index) in project.stack" :key="index" :src="tech.icon" :alt="tech.name"
-                  class="h-5 sm:h-8 object-contain">
+              <!-- Stack Technique avec tooltip -->
+              <div class="flex flex-wrap items-center gap-3 mt-3">
+                <div v-for="(tech, index) in project.stack" :key="index"
+                  class="relative group/tech flex items-center justify-center">
+
+                  <!-- Logo -->
+                  <img :src="tech.icon" :alt="tech.name" :title="tech.name"
+                    class="h-6 sm:h-8 object-contain transition-all duration-300 group-hover/tech:scale-110 cursor-pointer" />
+
+                  <!-- Tooltip au survol -->
+                  <span
+                    class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover/tech:opacity-100 transition-opacity duration-200 whitespace-nowrap bg-[#121137] text-[#FEE4B3] text-[11px] font-['Kode_Mono']
+                    px-2.5 py-1 rounded-md border border-[#8F98BE]/40 shadow-[0_0_10px_rgba(254,228,179,0.2)] pointer-events-none z-30">
+                    {{ tech.name }}
+
+                    <!-- Petite flèche vers le bas -->
+                    <span
+                      class="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px]  border-4 border-transparent border-t-[#121137]"></span>
+                  </span>
+                </div>
               </div>
             </div>
-
           </article>
-
         </div>
       </div>
-
     </div>
 
     <!-- Overlay de Chargement façon Terminal / CRT -->
@@ -141,7 +153,6 @@ const launchProject = (id) => {
           <p v-if="bootProgress >= 100" class="text-xs text-gray-400">
             > LAUNCHING_PROJECT...
           </p>
-
 
           <div class="flex justify-between text-[10px] text-gray-400">
             <span>MEM_BOOT_OK</span>

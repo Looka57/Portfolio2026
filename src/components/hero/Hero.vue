@@ -89,10 +89,15 @@ onUnmounted(() => {
         </p>
         <div class="buttons">
           <a href="#projects"
-            class="btn inline-block px-7 py-3.5 bg-[#FEE4B3] text-[#0C131B] font-semibold rounded-xl no-underline transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg hover:shadow-[#FEE4B3]/20">
-            Découvrir mes projets </a>
+          class="btn inline-block px-7 py-3.5 bg-[#FEE4B3] text-[#0C131B] font-semibold rounded-xl no-underline transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg hover:shadow-[#FEE4B3]/20">
+          Découvrir mes projets </a>
         </div>
       </div>
+     <img 
+    src="@/assets/img/Amande.png" 
+    alt="Photo de Amandine" 
+    class="absolute bottom-0 left-25 h-[75%] sm:h-[85%] md:h-[90%] max-h-[650px] object-contain object-bottom pointer-events-none z-0" 
+  />
     </div>
 
     <!-- COLONNE DROITE (ANIMATION & PARALLAX) -->
