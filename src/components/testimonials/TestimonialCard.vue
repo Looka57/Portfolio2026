@@ -7,8 +7,14 @@
     <div class="card-temoin relative w-full max-w-[360px] bg-[#1E293B] rounded-2xl p-6 sm:p-7 pt-12 sm:pt-14 border border-[#8F98BE] shadow-xl text-center transition-transform duration-300 hover:-translate-y-1 flex flex-col justify-between">
       <!-- AVATAR EN CHEVAUCHEMENT EN HAUT -->
       <div class="absolute -top-9 left-1/2 -translate-x-1/2">
-        <img src="@/assets/img/portrait1.png" alt="Photo de profil du témoin"
-          class="w-18 h-18 sm:w-20 sm:h-20  object-cover shadow-lg bg-[#0C131B] ring-2 ring-[#8F98BE]">
+        <img 
+          src="@/assets/img/portrait1.webp" 
+          alt="Photo de profil du témoin 1"
+          width="80" 
+          height="80" 
+          loading="lazy"
+          class="w-18 h-18 sm:w-20 sm:h-20 object-cover  shadow-lg bg-[#0C131B] ring-2 ring-[#8F98BE]"
+        />
       </div>
 
       <!-- CONTENU DU TÉMOIGNAGE -->
@@ -30,8 +36,14 @@
       class="card-temoin relative w-full max-w-[360px] bg-[#1E293B] rounded-2xl p-6 sm:p-7 pt-12 sm:pt-14 border border-[#8F98BE] shadow-xl text-center transition-transform duration-300 hover:-translate-y-1 flex flex-col justify-between">
       <!-- AVATAR EN CHEVAUCHEMENT EN HAUT -->
       <div class="absolute -top-9 left-1/2 -translate-x-1/2">
-        <img src="@/assets/img/portrait2.png" alt="Photo de profil du témoin"
-          class="w-18 h-18 sm:w-20 sm:h-20  object-cover shadow-lg bg-[#0C131B] ring-2 ring-[#8F98BE]">
+        <img 
+          src="@/assets/img/portrait2.webp" 
+          alt="Photo de profil du témoin 2"
+          width="80" 
+          height="80" 
+          loading="lazy"
+          class="w-18 h-18 sm:w-20 sm:h-20 object-cover  shadow-lg bg-[#0C131B] ring-2 ring-[#8F98BE]"
+        />
       </div>
 
       <!-- CONTENU DU TÉMOIGNAGE -->
@@ -53,8 +65,14 @@
       class="card-temoin relative w-full max-w-[360px] bg-[#1E293B] rounded-2xl p-6 sm:p-7 pt-12 sm:pt-14 border border-[#8F98BE] shadow-xl text-center transition-transform duration-300 hover:-translate-y-1 flex flex-col justify-between">
       <!-- AVATAR EN CHEVAUCHEMENT EN HAUT -->
       <div class="absolute -top-9 left-1/2 -translate-x-1/2">
-        <img src="@/assets/img/portrait3.png" alt="Photo de profil du témoin"
-          class="w-18 h-18 sm:w-20 sm:h-20  object-cover shadow-lg bg-[#0C131B] ring-2 ring-[#8F98BE]">
+        <img 
+          src="@/assets/img/portrait3.webp" 
+          alt="Photo de profil du témoin 3"
+          width="80" 
+          height="80" 
+          loading="lazy"
+          class="w-18 h-18 sm:w-20 sm:h-20 object-cover  shadow-lg bg-[#0C131B] ring-2 ring-[#8F98BE]"
+        />
       </div>
 
       <!-- CONTENU DU TÉMOIGNAGE -->

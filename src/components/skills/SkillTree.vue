@@ -421,7 +421,7 @@ onUnmounted(() => {
           <circle class="core-ring" :cx="cx" :cy="cy" r="98" stroke="url(#coreGrad)" stroke-dasharray="415 200"
             :transform="`rotate(-90 ${cx} ${cy})`" />
 
-          <image href="@/assets/sprite/marche.PNG" :x="cx - 35" :y="cy - 65" width="70" height="70"
+          <image href="@/assets/sprite/marche.webp" :x="cx - 35" :y="cy - 65" width="70" height="70"
             class="core-avatar-img" />
 
           <text class="core-label" :x="cx" :y="cy + 22">COMPÉTENCES</text>

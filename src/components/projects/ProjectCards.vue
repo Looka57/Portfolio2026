@@ -69,11 +69,11 @@ const launchProject = (id) => {
               class="relative w-full h-[200px] sm:h-[220px] flex items-center justify-center overflow-hidden rounded-xl bg-black/20">
               <img class="w-full h-full object-contain pointer-events-none select-none" :src="project.screenFrame"
                 alt="Moniteur pixel">
-
               <!-- Aperçu du projet -->
               <div class="absolute inset-x-6 top-4 bottom-6 flex items-center justify-center overflow-hidden p-1">
-                <img class="max-w-full max-h-full object-contain rounded-lg" :src="project.previewImg"
-                  :alt="project.title">
+                <img :src="project.previewImg" :alt="project.title" width="400" height="250" loading="lazy"
+                  class="max-w-full max-h-full object-contain rounded-lg"
+/>
 
                 <!-- Overlay interactif au survol -->
                 <div
@@ -85,7 +85,7 @@ const launchProject = (id) => {
                   </button>
 
                   <!-- Lien externe rapide (Site ou GitHub) -->
-                  <a :href="project.externalUrl" target="_blank"
+                  <a :href="project.externalUrl" target="_blank" :aria-label="`Voir le projet ${project.title}`"
                     class="inline-flex items-center gap-2 text-xs text-[#8F98BE] hover:text-[#FEE4B3] transition-colors border border-[#8F98BE]/30 px-3 py-1.5 rounded-lg bg-[#1E293B]/60">
                     [{{ project.externalLabel }}]
                   </a>
@@ -102,14 +102,15 @@ const launchProject = (id) => {
                 {{ project.description }}
               </p>
 
-              <!-- Stack Technique avec tooltip -->
+            <!-- Stack Technique avec tooltip -->
               <div class="flex flex-wrap items-center gap-3 mt-3">
                 <div v-for="(tech, index) in project.stack" :key="index"
                   class="relative group/tech flex items-center justify-center">
 
                   <!-- Logo -->
-                  <img :src="tech.icon" :alt="tech.name" :title="tech.name"
-                    class="h-6 sm:h-8 object-contain transition-all duration-300 group-hover/tech:scale-110 cursor-pointer" />
+                  <!-- Dans votre template de carte projet/stack -->
+                  <img :src="tech.icon" :alt="tech.name" width="32" height="32" loading="lazy"
+                    class="h-6 w-auto sm:h-8 object-contain transition-all duration-300 group-hover/tech:scale-110" />
 
                   <!-- Tooltip au survol -->
                   <span

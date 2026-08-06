@@ -10,7 +10,7 @@ import TestimonialCard from "./TestimonialCard.vue"
       <!-- EN-TÊTE DE SECTION -->
       <div class="flex items-center justify-center gap-3 sm:gap-6 mb-8 sm:mb-12 text-center">
         <!-- Trait gauche (Masqué sur très petits écrans) -->
-        <img src="@/assets/icons/trait.png" alt=""
+        <img src="@/assets/icons/trait.png" alt="icons de trait décoratif"
           class="hidden sm:inline-block h-auto max-w-[60px] md:max-w-[100px] object-contain select-none">
 
         <h2 class="text-2xl sm:text-3xl md:text-4xl uppercase tracking-wider text-[#D7F3F5] font-semibold">
@@ -18,7 +18,7 @@ import TestimonialCard from "./TestimonialCard.vue"
         </h2>
 
         <!-- Trait droit (Masqué sur très petits écrans) -->
-        <img src="@/assets/icons/trait1.png" alt=""
+        <img src="@/assets/icons/trait1.png" alt="icons de trait décoratif"
           class="hidden sm:inline-block h-auto max-w-[60px] md:max-w-[100px] object-contain select-none">
       </div>
 

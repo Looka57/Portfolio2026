@@ -29,7 +29,7 @@ const toggleSection = (section) => {
 
         <!-- Intro & Avatar -->
         <div class="flex items-center gap-3 pb-2 border-b border-slate-800/80">
-          <img src="@/assets/sprite/avatar.PNG" class="w-10 h-10 rounded-full border border-purple-500/50" />
+          <img src="@/assets/sprite/avatar.webp" alt="Avatar d'Amandine" class="w-10 h-10 rounded-full border border-purple-500/50" />
           <div>
             <h3 class="font-bold text-white text-sm">Amandine Napolitano</h3>
             <p class="text-[11px] text-purple-400">Développeuse Full Stack</p>
@@ -41,7 +41,7 @@ const toggleSection = (section) => {
           <button @click="toggleSection('nav')"
             class="w-full flex justify-between items-center text-xs font-semibold text-purple-400 py-1">
             <span>🗡️ NAVIGATION</span>
-            <span class="text-slate-500 text-base transition-transform duration-200"
+            <span class="text-slate-300 text-base transition-transform duration-200"
               :class="{ 'rotate-180': openSection === 'nav' }">▾</span>
           </button>
           <ul v-show="openSection === 'nav'" class="mt-2 space-y-2 text-[11px] text-slate-400 pl-4">
@@ -57,7 +57,7 @@ const toggleSection = (section) => {
           <button @click="toggleSection('spec')"
             class="w-full flex justify-between items-center text-xs font-semibold text-purple-400 py-1">
             <span>🛡️ SPÉCIALITÉS</span>
-            <span class="text-slate-500 text-base transition-transform duration-200"
+            <span class="text-slate-300 text-base transition-transform duration-200"
               :class="{ 'rotate-180': openSection === 'spec' }">▾</span>
           </button>
           <ul v-show="openSection === 'spec'" class="mt-2 space-y-2 text-[11px] text-slate-400 pl-4">
@@ -72,7 +72,7 @@ const toggleSection = (section) => {
           <button @click="toggleSection('tech')"
             class="w-full flex justify-between items-center text-xs font-semibold text-purple-400 py-1">
             <span>⛏️ OUTILS & TECHNOS</span>
-            <span class="text-slate-500 text-base transition-transform duration-200"
+            <span class="text-slate-300 text-base transition-transform duration-200"
               :class="{ 'rotate-180': openSection === 'tech' }">▾</span>
           </button>
           <p v-show="openSection === 'tech'" class="mt-2 text-[11px] text-slate-400 pl-4 leading-relaxed">
@@ -89,7 +89,7 @@ const toggleSection = (section) => {
         <!-- 1. Intro -->
         <div class="space-y-3">
           <div class="flex items-center gap-3">
-            <img src="@/assets/sprite/avatar.PNG" class="w-12 h-12 rounded-full border border-purple-500/50" />
+            <img src="@/assets/sprite/avatar.webp" class="w-12 h-12 rounded-full border border-purple-500/50" />
             <div>
               <h3 class="font-bold text-white text-base">Amandine Napolitano</h3>
               <p class="text-xs text-purple-400">Développeuse Full Stack</p>
@@ -136,7 +136,7 @@ const toggleSection = (section) => {
       <!-- ================= BAS DU FOOTER (Copyright + Légal) ================= -->
    <!-- ================= BAS DU FOOTER (Copyright + Légal) ================= -->
 <div
-  class="mt-8 pt-4 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-500">
+  class="mt-8 pt-4 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-300">
 
   <p>
     © {{ new Date().getFullYear() }} Amandine Napolitano. Tous droits réservés.

@@ -1,18 +1,22 @@
-import ecran1 from '@/assets/img/ecran1.png'
-import ecran2 from '@/assets/img/ecran2.png'
-import ecran3 from '@/assets/img/ecran3.png'
+import ecran1 from '@/assets/img/ecran1.webp'
+import ecran2 from '@/assets/img/ecran2.webp'
+import ecran3 from '@/assets/img/ecran3.webp'
 
-import ademImg from '@/assets/img/rapportAdem.png'
-import adminImg from '@/assets/img/admin2.png'
-import aspImg from '@/assets/img/aspJudo.png'
+import ademImg from '@/assets/img/rapportAdem.webp'
+import adminImg from '@/assets/img/admin2.webp'
+import aspImg from '@/assets/img/aspJudo.webp'
 
-import htmlIcon from '@/assets/icons/html.png'
-import cssIcon from '@/assets/icons/css.png'
-import phpIcon from '@/assets/icons/php.png'
-import mysqlIcon from '@/assets/icons/mysql.png'
-import csharpIcon from '@/assets/icons/cSharp.png'
-import dotnetIcon from '@/assets/icons/dotnet.PNG'
-import vueIcon from '@/assets/icons/vue.png'
+// Icônes SVG Devicon hébergées sur CDN (ultra-légères & vectorielles)
+const htmlIcon = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg'
+const cssIcon = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg'
+const phpIcon = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg'
+const mysqlIcon = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg'
+const csharpIcon = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg'
+const dotnetIcon = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg'
+const vueIcon = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg'
+const sqlServerIcon = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/microsoftsqlserver/microsoftsqlserver-original.svg' 
+
+          
 
 export const projects = [
   {
@@ -61,6 +65,7 @@ export const projects = [
       { name: 'Vue.js', icon: vueIcon },
       { name: 'C#', icon: csharpIcon },
       { name: '.NET', icon: dotnetIcon },
+      { name: 'SQLServer', icon: sqlServerIcon },
     ],
   },
 ]

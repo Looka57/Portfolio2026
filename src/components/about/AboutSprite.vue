@@ -3,10 +3,10 @@ import { onMounted, onUnmounted, ref, nextTick } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-import montagnes from '@/assets/font/montagnes.png'
-import trou from '@/assets/font/trous.png'
-import ilesImg from '@/assets/font/ilesAbout.png'
-import descenteImg from '@/assets/sprite/descente.png'
+import montagnes from '@/assets/font/montagnes.webp'
+import trou from '@/assets/font/trous.webp'
+import ilesImg from '@/assets/font/ilesAbout.webp'
+import descenteImg from '@/assets/sprite/descente.webp'
 
 gsap.registerPlugin(ScrollTrigger)
 

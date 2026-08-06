@@ -23,7 +23,7 @@ onMounted(() => {
   }
 
   ctx = gsap.context(() => {
-    // Déplacement du personnage
+    // Conservation du délai de 1 seconde pour l'animation
     gsap.delayedCall(1, () => {
       gsap.to(".character", {
         x: "100%",
@@ -89,15 +89,24 @@ onUnmounted(() => {
         </p>
         <div class="buttons">
           <a href="#projects"
-          class="btn inline-block px-7 py-3.5 bg-[#FEE4B3] text-[#0C131B] font-semibold rounded-xl no-underline transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg hover:shadow-[#FEE4B3]/20">
-          Découvrir mes projets </a>
+            class="btn inline-block px-7 py-3.5 bg-[#FEE4B3] text-[#0C131B] font-semibold rounded-xl no-underline transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg hover:shadow-[#FEE4B3]/20">
+            Découvrir mes projets
+          </a>
         </div>
       </div>
-     <img 
-    src="@/assets/img/Amande.png" 
-    alt="Photo de Amandine" 
-    class="absolute bottom-0 left-25 h-[75%] sm:h-[85%] md:h-[90%] max-h-[650px] object-contain object-bottom pointer-events-none z-0" 
-  />
+
+      <img src="@/assets/img/Amande.webp" alt="Photo de Amandine" fetchpriority="high" width="800" height="650"
+        class="absolute bottom-0 left-60 h-[75%] sm:h-[85%] md:h-[90%] max-h-[650px] object-contain object-bottom pointer-events-none z-0" />
+
+        <!-- TODO:Savoir quoi faire avec cette image la mettre ou pas..ou l changer de place -->
+        <!-- <img 
+  src="@/assets/img/Amande.webp" 
+  alt="Photo de Amandine, développeuse web" 
+  fetchpriority="high" 
+  width="500" 
+  height="400"
+  class="absolute bottom-0 left-60 h-[75%] sm:h-[85%] md:h-[90%] max-h-[650px] object-contain object-bottom pointer-events-none z-0" 
+/> -->
     </div>
 
     <!-- COLONNE DROITE (ANIMATION & PARALLAX) -->
@@ -105,22 +114,22 @@ onUnmounted(() => {
       <div class="parallax relative w-full h-full">
 
         <div class="layer sky absolute inset-0 z-[1]">
-          <img src="@/assets/font/ciel.png" alt="Ciel"
+          <img src="@/assets/font/ciel.webp" alt="Ciel" fetchpriority="high" width="1000" height="600"
             class="absolute bottom-0 left-0 w-full h-full object-cover object-bottom select-none pointer-events-none">
         </div>
 
         <div class="layer mountains absolute inset-0 z-[5]">
-          <img src="@/assets/font/montagnes.png" alt="Montagnes"
+          <img src="@/assets/font/montagnes.webp" alt="Montagnes" width="1000" height="600"
             class="absolute bottom-0 left-0 w-full h-full object-cover object-bottom select-none pointer-events-none">
         </div>
 
         <div class="layer islands absolute inset-0 z-[10]">
-          <img src="@/assets/font/iles.png" alt="Îles"
+          <img src="@/assets/font/iles.webp" alt="Îles" width="1000" height="600"
             class="absolute bottom-0 left-0 w-full h-full object-cover object-bottom select-none pointer-events-none">
         </div>
 
         <div class="layer road absolute inset-0 z-[15]">
-          <img src="@/assets/font/route.png" alt="Route"
+          <img src="@/assets/font/route.webp" alt="Route" width="1000" height="600"
             class="absolute bottom-0 left-0 w-full h-full object-cover object-bottom select-none pointer-events-none">
         </div>
 
@@ -130,7 +139,7 @@ onUnmounted(() => {
         </div>
 
         <div class="layer foreground absolute inset-0 z-[30]">
-          <img src="@/assets/font/1ert_plan.png" alt="Premier plan"
+          <img src="@/assets/font/1ert_plan.webp" alt="Premier plan" width="1000" height="600"
             class="w-full h-auto absolute bottom-0 top-auto object-contain select-none pointer-events-none">
         </div>
       </div>
@@ -141,14 +150,14 @@ onUnmounted(() => {
 
 <style scoped>
 .left-col {
-  background-image: url("@/assets/font/Fond hero.png");
+  background-image: url("@/assets/font/Fond hero.webp");
 }
 
 /* Spritesheet adaptable */
 .character-sprite {
   width: 177px;
   height: 210px;
-  background-image: url("@/assets/sprite/spritesSheets.png");
+  background-image: url("@/assets/sprite/spritesSheets.webp");
   background-repeat: no-repeat;
   background-position: 0px 0px;
   background-size: 884px 210px;
