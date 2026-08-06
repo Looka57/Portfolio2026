@@ -129,7 +129,7 @@ onUnmounted(() => {
         </div>
 
         <div class="layer road absolute inset-0 z-[15]">
-          <img src="@/assets/font/route.webp" alt="Route" width="1000" height="600"
+          <img src="@/assets/font/Route.webp" alt="Route" width="1000" height="600"
             class="absolute bottom-0 left-0 w-full h-full object-cover object-bottom select-none pointer-events-none">
         </div>
 
