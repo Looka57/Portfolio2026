@@ -82,3 +82,33 @@ Le portfolio met en avant plusieurs projets majeurs conçus durant mon parcours 
 1. **Cloner le dépôt :**
    ```bash
    git clone [https://github.com/Looka57/portfolio.git](https://github.com/Looka57/portfolio.git)
+Accéder au projet
+cd portfolio
+Installer les dépendances
+npm install
+Lancer le serveur de développement
+npm run dev
+Générer le build de production
+npm run build
+
+Le build final est généré dans le dossier dist/.
+
+🎨 À propos du projet
+
+Ce portfolio est également un projet de démonstration de mes compétences en développement web.
+
+L'interface, l'identité graphique, les animations et les différents éléments visuels ont été pensés et intégrés spécifiquement pour créer une expérience personnelle et interactive.
+
+L'objectif était de proposer une vitrine professionnelle qui associe développement, créativité et expérience utilisateur.
+
+📬 Contact & réseaux
+🌐 Portfolio : portfolio2026-2wpj.vercel.app
+💻 GitHub : @Looka57
+
+Développé par Amandine Napolitano — Développeuse Web Freelance.
+
+
+
+
+
+   
