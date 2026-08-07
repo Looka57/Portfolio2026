@@ -13,8 +13,7 @@ L'objectif est de présenter mon parcours, mes compétences et mes réalisations
 
 🌐Le site est accessible en ligne :
 
-[![portfolio2026-2wpj.vercel.app](https://portfolio2026-2wpj.vercel.app/)
-
+[![Aperçu du site](https://img.shields.io/badge/Voir_le_site-portfolio2026--2wpj.vercel.app-000000?style=for-the-badge&logo=vercel)](https://portfolio2026-2wpj.vercel.app/)
 
 
 ---
