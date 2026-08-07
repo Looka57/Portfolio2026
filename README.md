@@ -5,10 +5,17 @@ Ce projet a été conçu et développé de zéro avec **Vue 3** et **Vite**, ave
 
 L'objectif est de présenter mon parcours, mes compétences et mes réalisations tout en mettant en pratique mes compétences en développement front-end, intégration, responsive design et animation.
 
-![Lighthouse Score](https://img.shields.io/badge/Lighthouse-97%2F100-0BBF55?style=for-the-badge&logo=lighthouse&logoColor=white)
-![Vue.js](https://img.shields.io/badge/Vue.js-3.x-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-8.x-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-![Vercel](https://img.shields.io/badge/Vercel-Deployed-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Lighthouse](https://img.shields.io/badge/Lighthouse-Performance-0BBF55?style=for-the-badge&logo=lighthouse&logoColor=white)
+![Vue.js](https://img.shields.io/badge/Vue.js-Framework-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-Build%20Tool-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-Deployment-000000?style=for-the-badge&logo=vercel&logoColor=white)
+
+
+![Vue.js](https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
 🌐 **Le site est accessible en ligne :**
 
