@@ -11,10 +11,9 @@ L'objectif est de présenter mon parcours, mes compétences et mes réalisations
 ![Vite](https://img.shields.io/badge/Vite-latest-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![Vercel Status](https://img.shields.io/badge/Vercel-Deployed-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
-🌐Le site est accessible en ligne :
+🌐 **Le site est accessible en ligne :**
 
-[![Aperçu du site](https://img.shields.io/badge/Voir_le_site-portfolio2026--2wpj.vercel.app-000000?style=for-the-badge&logo=vercel)](https://portfolio2026-2wpj.vercel.app/)
-
+[![Voir le site](https://img.shields.io/badge/Voir_le_site-portfolio2026--2wpj.vercel.app-000000?style=for-the-badge&logo=vercel)](https://portfolio2026-2wpj.vercel.app/)
 
 ---
 
