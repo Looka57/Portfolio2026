@@ -45,7 +45,7 @@ onMounted(() => {
     /* PARALLAX */
     const parallaxLayers = [
       { selector: ".sky", y: 120 },
-      { selector: ".mountains", y: 40 },
+      { selector: ".mountains", y: 20 },
       { selector: ".islands", y: 150 },
       { selector: ".road", y: 100 },
       { selector: ".character", y: 100 }
@@ -98,8 +98,8 @@ onUnmounted(() => {
       <img src="@/assets/img/Amande.webp" alt="Photo de Amandine" fetchpriority="high" width="800" height="650"
         class="absolute bottom-0 left-[25%] h-[75%] sm:h-[85%] md:h-[90%] max-h-[650px] object-contain object-bottom pointer-events-none z-0" />
 
-        <!-- TODO:Savoir quoi faire avec cette image la mettre ou pas..ou l changer de place -->
-        <!-- <img 
+      <!-- TODO:Savoir quoi faire avec cette image la mettre ou pas..ou l changer de place -->
+      <!-- <img 
   src="@/assets/img/Amande.webp" 
   alt="Photo de Amandine, développeuse web" 
   fetchpriority="high" 
@@ -120,7 +120,7 @@ onUnmounted(() => {
 
         <div class="layer mountains absolute inset-0 z-[5]">
           <img src="@/assets/font/montagnes.webp" alt="Montagnes" width="1000" height="600"
-            class="absolute bottom-0 left-0 w-full h-full object-cover object-bottom select-none pointer-events-none">
+            class="absolute bottom-10 left-0 w-full h-full object-cover object-bottom select-none pointer-events-none">
         </div>
 
         <div class="layer islands absolute inset-0 z-[10]">
