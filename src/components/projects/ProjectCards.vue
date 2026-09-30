@@ -10,7 +10,6 @@ const isBooting = ref(false);
 const bootProgress = ref(0);
 const activeProjectId = ref('');
 
-
 const currentProjectName = computed(() => {
   const p = projects.find(proj => proj.id === activeProjectId.value);
   return p ? p.title.toUpperCase() : '';
@@ -19,33 +18,24 @@ const currentProjectName = computed(() => {
 
 // Déclenchement de la séquence d'allumage Terminal
 const launchProject = (id) => {
-
   // Empêche plusieurs lancements simultanés
   if (isBooting.value) return;
-
   activeProjectId.value = id;
   bootProgress.value = 0;
   isBooting.value = true;
 
 
   const interval = setInterval(() => {
-
     bootProgress.value += Math.floor(Math.random() * 15) + 8;
-
-
     if (bootProgress.value >= 100) {
-
       bootProgress.value = 100;
       clearInterval(interval);
-
 
       setTimeout(() => {
         isBooting.value = false;
         router.push(`/projets/${id}`);
       }, 800);
-
     }
-
   }, 150);
 };
 
@@ -72,8 +62,7 @@ const launchProject = (id) => {
               <!-- Aperçu du projet -->
               <div class="absolute inset-x-6 top-4 bottom-6 flex items-center justify-center overflow-hidden p-1">
                 <img :src="project.previewImg" :alt="project.title" width="400" height="250" loading="lazy"
-                  class="max-w-full max-h-full object-contain rounded-lg"
-/>
+                  class="max-w-full max-h-full object-contain rounded-lg" />
 
                 <!-- Overlay interactif au survol -->
                 <div
@@ -102,7 +91,7 @@ const launchProject = (id) => {
                 {{ project.description }}
               </p>
 
-            <!-- Stack Technique avec tooltip -->
+              <!-- Stack Technique avec tooltip -->
               <div class="flex flex-wrap items-center gap-3 mt-3">
                 <div v-for="(tech, index) in project.stack" :key="index"
                   class="relative group/tech flex items-center justify-center">
